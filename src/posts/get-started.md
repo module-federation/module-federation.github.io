@@ -13,7 +13,7 @@ I think [Zack Jackson](https://indepth.dev/webpack-5-module-federation-a-game-ch
 
 > A scalable solution to sharing code between independent applications has never been convenient, and near impossible at scale. The closest we had was externals or DLLPlugin, forcing centralized dependency on a external file. It was a hassle to share code, the separate applications were not truly standalone and usually, a limited number of dependencies are shared. Moreover, sharing actual feature code or components between separately bundled applications is unfeasible, unproductive, and unprofitable.
 
-If you would like to learn more about Webpack Module Federation, you can head over to the [Learn More](/learn-more) page.
+If you would like to learn more about Webpack Module Federation, you can head over to the and check out [https://indepth.dev/webpack-5-module-federation-a-game-changer-in-javascript-architecture/](https://indepth.dev/webpack-5-module-federation-a-game-changer-in-javascript-architecture/ "https://indepth.dev/webpack-5-module-federation-a-game-changer-in-javascript-architecture/").
 
 # What We Are Building
 
