@@ -3,16 +3,15 @@ import Prism from 'prismjs';
 import matter from 'gray-matter';
 import marksy from 'marksy/jsx';
 
+import ArticlePage from '../../components/article-page';
+import navItems from '../../nav-items';
+
 const compile = marksy({
   createElement: React.createElement,
   highlight(language, code) {
     return Prism.highlight(code, Prism.languages[language], language);
   },
 });
-
-
-import ArticlePage from '../../components/article-page';
-import navItems from '../../nav-items';
 
 // function reformatDate(fullDate) {
 //   const date = new Date(fullDate)
