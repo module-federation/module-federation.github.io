@@ -1,10 +1,13 @@
 import React from 'react';
-import Router from 'next/router';
 
-export default function GetStartedRedirect() {
-  React.useEffect(() => {
-    Router.replace('/blog/get-started');
-  }, []);
+import BlogPage from './blog/[slug]';
 
-  return <p>Redirecting....</p>;
+export default function GetStartedRedirect(props) {
+  return <BlogPage {...props} />
 }
+
+GetStartedRedirect.getInitialProps = async () =>BlogPage.getInitialProps({
+  query: {
+    slug: 'get-started'
+  },
+});
