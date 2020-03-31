@@ -21,7 +21,7 @@ We are going to build out two separate Single Page Applications (SPA) that use M
 
 `Application A` will contain a `SayHelloFromA` component that will be consumed by `Application B` while `Application B` will contain a `SayHelloFromB` component that will be consumed by `ApplicationA`. This looks like:
 
-![](/static/get-started-diagram.svg "Architecture Diagram")
+![](/get-started-diagram.svg "Architecture Diagram")
 
 This architecture will allow each SPA to be developed and deployed independantly along with instantly recieving updates from other federated applications with zero deployments.
 
@@ -412,10 +412,10 @@ ReactDOM.render(
 
 Looking at the network log for `Application A` you will see that we load two files from `Application B`, the `remoteEntry.js` file, then the `977.js` that contains the `SayHelloFromB` component.
 
-![](/static/application-a-network-log.png)
+![Application B Network Log](/application-a-network-log.png)
 
 Visiting `Application B` for the first time, you'll notice we have already cached the remoteEntries for both `Application B` and `Application A`.
 
-![](/static/application-b-network-log.png)
+![Application B Network Log](/application-b-network-log.png)
 
 **You have just created your first Webpack 5 Federated projects. Now go out and build something awesome!**

@@ -6,12 +6,12 @@
   "version": "0.1.0",
   "author": "Jacob Ebey",
   "scripts": {
-    "dev": "next src",
-    "build": "next build src",
-    "start": "next start src",
-    "export": "next export src",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
     "deploy": "yarn build && yarn export",
-    "forestry-preview": "next src -p 8080 -H 0.0.0.0"
+    "forestry-preview": "next -p 8080 -H 0.0.0.0"
   },
   "dependencies": {
     "buffer": "^5.5.0",

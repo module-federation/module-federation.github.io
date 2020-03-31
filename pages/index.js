@@ -54,7 +54,7 @@ export default function HomePage() {
               </p>
             </Grid.Column>
             <Grid.Column floated="right" width={6} textAlign="center">
-              <Image size="large" src="/static/federation-diagram.svg" style={{ margin: '0 auto 1rem auto' }} />
+              <Image size="large" src="/federation-diagram.svg" style={{ margin: '0 auto 1rem auto' }} />
               <p>
                 Teams can consume components at runtime instead of as part of their build pipeline
               </p>

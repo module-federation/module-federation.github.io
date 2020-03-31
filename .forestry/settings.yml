@@ -15,15 +15,15 @@ sections:
 - type: heading
   label: Config
 - type: document
-  path: src/data/config.json
+  path: data/config.json
   label: Site Info
-upload_dir: src/static
-public_path: "/static"
+upload_dir: public
+public_path: "/"
 front_matter_path: ''
 use_front_matter_path: false
 file_template: ":filename:"
 build:
-  preview_output_directory: src/.next
+  preview_output_directory: .next
   install_dependencies_command: yarn install
   preview_docker_image: node:10
   mount_path: "/srv"

@@ -2,9 +2,6 @@
   <a style="padding-right: 16px;" href="https://tinacms.org">
     <img src="https://app.forestry.io/assets/forestry-logotype-pos-c71a6bd237d9199d0457ba2811553997ff5bab0d2cd0e740686ab26c00d9c240.svg" width="112" height="28">
   </a>
-  <a href="https://www.nextjs.org/">
-    <img src="src/static/nextjs-black-logo.svg" width="80" height="28">
-  </a>
 </p>
 <h1 align="center">
   Brevifolia
@@ -52,8 +49,8 @@ This will start a dev server, navigate to localhost:3000 to check it out.
 - Site-level configuration is stored in `data/config.json`. 
 - Edit styles within each component or page file within the `<style jsx>` tags. 
 - Global styles live in the `Meta` component. 
+- `public/` is where you images live and will get uploaded.
 - `src/posts/`contains all your markdown blog posts.
-- `src/static/` is where you images live and will get uploaded.
 - `src/pages` is where you page components live. 
 - The blog pages are dynamically generated with a `slug` parameter. See the template in `src/pages/blog/[slug].js`. 
 - The pages & template are comprised of components from `src/components`.
