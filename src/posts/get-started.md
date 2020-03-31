@@ -381,10 +381,10 @@ Starting with `Application A`, we can render the `SayHelloFromB` component like 
 
 Looking at the network log for `Application A` you will see that we load two files from `Application B`, the `remoteEntry.js` file, then the `977.js` that contains the `SayHelloFromB` component.
 
-<Image alt="'Application A' network log" size="large" src={aNetworkLog} style={{ margin: "2rem auto" }} />
+![](/static/application-a-network-log.png)
 
 Visiting `Application B` for the first time, you'll notice we have already cached the remoteEntries for both `Application B` and `Application A`.
 
-<Image alt="'Application B' network log" size="large" src={bNetworkLog} style={{ margin: "2rem auto" }} />
+![](/static/application-b-network-log.png)
 
 **You have just created your first Webpack 5 Federated projects. Now go out and build something awesome!**
