@@ -17,9 +17,6 @@ sections:
 - type: document
   path: src/data/config.json
   label: Site Info
-- type: document
-  path: src/data/info.md
-  label: Info Page
 upload_dir: src/static
 public_path: src/static
 front_matter_path: ''
