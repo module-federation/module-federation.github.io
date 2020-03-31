@@ -1,4 +1,6 @@
 import React from 'react';
+
+import 'prism-themes/themes/prism-vs.css';
 import 'semantic-ui-css/semantic.min.css';
 
 import '../styles/bootstrap.css';

@@ -1,17 +1,29 @@
 import * as React from 'react'
-import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
+import Prism from 'prismjs';
+import matter from 'gray-matter';
+import marksy from 'marksy/jsx';
+
+const compile = marksy({
+  createElement: React.createElement,
+  highlight(language, code) {
+    return Prism.highlight(code, Prism.languages[language], language);
+  },
+});
+
 
 import ArticlePage from '../../components/article-page';
 import navItems from '../../nav-items';
 
+// function reformatDate(fullDate) {
+//   const date = new Date(fullDate)
+//   return date.toDateString().slice(4);
+// }
+
 export default function BlogTemplate(props) {
-  // function reformatDate(fullDate) {
-  //   const date = new Date(fullDate)
-  //   return date.toDateString().slice(4);
-  // }
   const markdownBody = props.content
   const frontmatter = props.data
+
+  const body = compile(markdownBody);
 
   return (
     <ArticlePage
@@ -20,7 +32,9 @@ export default function BlogTemplate(props) {
       title={frontmatter.title}
       secondaryTitle={frontmatter.secondary_title}
     >
-      <ReactMarkdown source={markdownBody} />
+      <article className="center-images">
+        {body.tree}
+      </article>
     </ArticlePage>
   );
 }
