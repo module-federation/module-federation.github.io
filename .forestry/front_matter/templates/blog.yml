@@ -31,8 +31,3 @@ fields:
   config:
     required: true
   default: now
-pages:
-- src/posts/doug-fir.md
-- src/posts/coastal-redwood.md
-- src/posts/the-oldest-living-organism-on-the-planet.md
-- src/posts/rocky-mountain-juniper.md
