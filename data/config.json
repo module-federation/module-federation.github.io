@@ -1,5 +1,5 @@
 {
-  "title":"Federated Libraries",
-  "description":"Start treating your component libraries as independently deployed services",
-  "repositoryUrl":"https://github.com/jacob-ebey/federated-libraries-nextjs"
+  "title": "Federated Libraries",
+  "description": "Start treating your component libraries as independently deployed services",
+  "repositoryUrl": "https://github.com/jacob-ebey/federated-libraries-next"
 }
