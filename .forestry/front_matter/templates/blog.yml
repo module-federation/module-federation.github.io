@@ -11,7 +11,7 @@ fields:
   name: secondary_title
   label: secondary_title
   config:
-    required: true
+    required: false
 - name: author
   type: select
   default: The Collective Unconscious
