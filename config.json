@@ -1,0 +1,15 @@
+{
+  "title": "Federated Libraries",
+  "description": "Start treating your component libraries as independently deployed services",
+  "contact": {
+    "website_url": "https://federated-libraries.now.sh/",
+    "made_with_url": "https://nextjs.org/",
+    "email": "jacob.ebey@live.com",
+    "twitter_handle": "@forestryio",
+    "twitter_url": "https://twitter.com/forestryio",
+    "github_handle": "forestryio",
+    "github_url": "https://github.com/forestryio"
+  },
+  "primary_color": "#AEC4BE",
+  "repository_url": "https://github.com/jacob-ebey/federated-libraries-next"
+}
