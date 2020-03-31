@@ -37,81 +37,88 @@ Start by creating a new project folder with the following `package.json` to allo
 
 **package.json**
 
-    {
-      "name": "federation-example",
-      "private": true,
-      "workspaces": [
-        "packages/*"
-      ],
-      "scripts": {
-        "start": "wsrun --parallel start",
-        "build": "yarn workspaces run build",
-        "dev": "wsrun --parallel dev"
-      },
-      "devDependencies": {
-        "wsrun": "^5.2.0"
-      }
-    }
+```json
+{
+  "name": "federation-example",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "wsrun --parallel start",
+    "build": "yarn workspaces run build",
+    "dev": "wsrun --parallel dev"
+  },
+  "devDependencies": {
+    "wsrun": "^5.2.0"
+  }
+}
+```
 
 We will now create two folders for our SPAs to live in under a new `packages` directory called `application-a` and `application-b`, these will respectively contain the following `package.json` files:
 
 **packages/application-a/package.json**
 
-    {
-      "name": "application-a",
-      "version": "1.0.0",
-      "private": true,
-      "scripts": {
-        "start": "serve dist -p 3001",
-        "build": "webpack --mode production",
-        "dev": "concurrently \"webpack --watch\" \"serve dist -p 3001\""
-      },
-      "dependencies": {
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1"
-      },
-      "devDependencies": {
-        "@babel/core": "^7.8.6",
-        "@babel/preset-react": "^7.8.3",
-        "babel-loader": "^8.0.6",
-        "concurrently": "^5.1.0",
-        "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
-        "serve": "^11.3.0",
-        "webpack": "git://github.com/webpack/webpack.git#dev-1",
-        "webpack-cli": "^3.3.11"
-      }
-    }
-
+```json
+{
+  "name": "application-a",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "serve dist -p 3001",
+    "build": "webpack --mode production",
+    "dev": "concurrently \"webpack --watch\" \"serve dist -p 3001\""
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "concurrently": "^5.1.0",
+    "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
+    "serve": "^11.3.0",
+    "webpack": "git://github.com/webpack/webpack.git#dev-1",
+    "webpack-cli": "^3.3.11"
+  }
+}
+```
 **packages/application-b/package.json**
 
-    {
-      "name": "application-b",
-      "version": "1.0.0",
-      "private": true,
-      "scripts": {
-        "start": "serve dist -p 3002",
-        "build": "webpack --mode production",
-        "dev": "concurrently \"webpack --watch\" \"serve dist -p 3002\""
-      },
-      "dependencies": {
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1"
-      },
-      "devDependencies": {
-        "@babel/core": "^7.8.6",
-        "@babel/preset-react": "^7.8.3",
-        "babel-loader": "^8.0.6",
-        "concurrently": "^5.1.0",
-        "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
-        "serve": "^11.3.0",
-        "webpack": "git://github.com/webpack/webpack.git#dev-1",
-        "webpack-cli": "^3.3.11"
-      }
-    }
+```json
+{
+  "name": "application-b",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "serve dist -p 3002",
+    "build": "webpack --mode production",
+    "dev": "concurrently \"webpack --watch\" \"serve dist -p 3002\""
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "concurrently": "^5.1.0",
+    "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
+    "serve": "^11.3.0",
+    "webpack": "git://github.com/webpack/webpack.git#dev-1",
+    "webpack-cli": "^3.3.11"
+  }
+}
+```
 
 Install the dependancies with:
 
-    > yarn
+```bash
+> yarn
+```
 
 ## Bootstrap The SPAs
 
@@ -119,89 +126,101 @@ Next up is bootstraping our SPA React applications. We need to create a `src` di
 
 **packages/application-{a,b}/src/index.js**
 
-    import('./bootstrap');
-
+```javascript
+import('./bootstrap');
+```
 **packages/application-{a,b}/src/bootstrap.jsx**
 
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    
-    import App from './app';
-    
-    ReactDOM.render(<App />, document.getElementById('root'));
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
 
+import App from './app';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
 We also need a `public` directory in each of the packages with the the following html template that we will modify per SPA later:
 
 **packages/application-{a,b}/public/index.html**
 
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-      </head>
-      <body>
-        <div id="root"></div>
-      </body>
-    </html>
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+```
 
 Now we can implement our two `app.jsx` files for each application that will house our shared components:
 
 **packages/application-a/src/app.jsx**
 
-    import React from 'react';
-    
-    export default function SayHelloFromA() {
-      return <h1>Hello from Application A!</h1>;
-    }
+```javascript
+import React from 'react';
+
+export default function SayHelloFromA() {
+  return <h1>Hello from Application A!</h1>;
+}
+```
 
 **packages/application-b/src/app.jsx**
 
-    import React from 'react';
-    
-    export default function SayHelloFromB() {
-      return <h1>Hello from Application B!</h1>;
-    }
+```javascript
+import React from 'react';
+
+export default function SayHelloFromB() {
+  return <h1>Hello from Application B!</h1>;
+}
+```
 
 And now finally, we'll add our base `webpack.config.js` for each application:
 
 **packages/application-{a,b}/webpack.config.js**
 
-    const HtmlWebpackPlugin = require('html-webpack-plugin');
-    const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-    
-    const mode = process.env.NODE_ENV || 'production';
-    
-    module.exports = {
-      mode,
-      entry: './src/index',
-      devtool: 'source-map',
-      optimization: {
-        minimize: mode === 'production',
+```javascript
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+
+const mode = process.env.NODE_ENV || 'production';
+
+module.exports = {
+  mode,
+  entry: './src/index',
+  devtool: 'source-map',
+  optimization: {
+    minimize: mode === 'production',
+  },
+  resolve: {
+    extensions: ['.jsx', '.js', '.json'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loader: require.resolve('babel-loader'),
+        options: {
+          presets: [require.resolve('@babel/preset-react')],
+        },
       },
-      resolve: {
-        extensions: ['.jsx', '.js', '.json'],
-      },
-      module: {
-        rules: [
-          {
-            test: /\.jsx?$/,
-            loader: require.resolve('babel-loader'),
-            options: {
-              presets: [require.resolve('@babel/preset-react')],
-            },
-          },
-        ],
-      },
-    
-      plugins: [
-        new HtmlWebpackPlugin({
-          template: './public/index.html',
-        }),
-      ],
-    };
+    ],
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+  ],
+};
+```
 
 From the root of the application, you should now be able to access your two SPAs on [http://localhost:3001](http://localhost:3001) and [http://localhost:3002](http://localhost:3002) when runing:
 
-    > yarn dev
+```bash
+> yarn dev
+```
 
 # Start Federating
 
@@ -211,55 +230,57 @@ We'll start by adding the `ModuleFederationPlugin` to `Application A`, this will
 
 **packages/application-a/webpack.config.js**
 
-    const HtmlWebpackPlugin = require('html-webpack-plugin');
-    const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-    
-    const mode = process.env.NODE_ENV || 'production';
-    
-    module.exports = {
-      mode,
-      entry: './src/index',
-      output: {
-        publicPath: 'http://localhost:3001/', // New
+```javascript
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+
+const mode = process.env.NODE_ENV || 'production';
+
+module.exports = {
+  mode,
+  entry: './src/index',
+  output: {
+    publicPath: 'http://localhost:3001/', // New
+  },
+  devtool: 'source-map',
+  optimization: {
+    minimize: mode === 'production',
+  },
+  resolve: {
+    extensions: ['.jsx', '.js', '.json'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loader: require.resolve('babel-loader'),
+        options: {
+          presets: [require.resolve('@babel/preset-react')],
+        },
       },
-      devtool: 'source-map',
-      optimization: {
-        minimize: mode === 'production',
+    ],
+  },
+
+  plugins: [
+    // New
+    new ModuleFederationPlugin({
+      name: 'application_a',
+      library: { type: 'var', name: 'application_a' },
+      filename: 'remoteEntry.js',
+      exposes: {
+        'SayHelloFromA': './src/app',
       },
-      resolve: {
-        extensions: ['.jsx', '.js', '.json'],
+      remotes: {
+        'application_b': 'application_b',
       },
-      module: {
-        rules: [
-          {
-            test: /\.jsx?$/,
-            loader: require.resolve('babel-loader'),
-            options: {
-              presets: [require.resolve('@babel/preset-react')],
-            },
-          },
-        ],
-      },
-    
-      plugins: [
-        // New
-        new ModuleFederationPlugin({
-          name: 'application_a',
-          library: { type: 'var', name: 'application_a' },
-          filename: 'remoteEntry.js',
-          exposes: {
-            'SayHelloFromA': './src/app',
-          },
-          remotes: {
-            'application_b': 'application_b',
-          },
-          shared: ['react', 'react-dom'],
-        }),
-        new HtmlWebpackPlugin({
-          template: './public/index.html',
-        }),
-      ],
-    };
+      shared: ['react', 'react-dom'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+  ],
+};
+```
 
 This specifies that `Application A` exposese it's App component to the world as a Federated Module called `SayHelloFromA`, while whenever you import from `application_b`, those modules should come from `Application B` at runtime.
 
@@ -267,71 +288,77 @@ We will do the same thing fro `Applicaiton B`, specifying that it exposes it's A
 
 **packages/application-b/webpack.config.js**
 
-    const HtmlWebpackPlugin = require('html-webpack-plugin');
-    const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-    
-    const mode = process.env.NODE_ENV || 'production';
-    
-    module.exports = {
-      mode,
-      entry: './src/index',
-      output: {
-        publicPath: 'http://localhost:3002/', // New
+```javascript
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+
+const mode = process.env.NODE_ENV || 'production';
+
+module.exports = {
+  mode,
+  entry: './src/index',
+  output: {
+    publicPath: 'http://localhost:3002/', // New
+  },
+  devtool: 'source-map',
+  optimization: {
+    minimize: mode === 'production',
+  },
+  resolve: {
+    extensions: ['.jsx', '.js', '.json'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loader: require.resolve('babel-loader'),
+        options: {
+          presets: [require.resolve('@babel/preset-react')],
+        },
       },
-      devtool: 'source-map',
-      optimization: {
-        minimize: mode === 'production',
+    ],
+  },
+
+  plugins: [
+    // New
+    new ModuleFederationPlugin({
+      name: 'application_b',
+      library: { type: 'var', name: 'application_b' },
+      filename: 'remoteEntry.js',
+      exposes: {
+        'SayHelloFromB': './src/app',
       },
-      resolve: {
-        extensions: ['.jsx', '.js', '.json'],
+      remotes: {
+        'application_a': 'application_a',
       },
-      module: {
-        rules: [
-          {
-            test: /\.jsx?$/,
-            loader: require.resolve('babel-loader'),
-            options: {
-              presets: [require.resolve('@babel/preset-react')],
-            },
-          },
-        ],
-      },
-    
-      plugins: [
-        // New
-        new ModuleFederationPlugin({
-          name: 'application_b',
-          library: { type: 'var', name: 'application_b' },
-          filename: 'remoteEntry.js',
-          exposes: {
-            'SayHelloFromB': './src/app',
-          },
-          remotes: {
-            'application_a': 'application_a',
-          },
-          shared: ['react', 'react-dom'],
-        }),
-        new HtmlWebpackPlugin({
-          template: './public/index.html',
-        }),
-      ],
-    };
+      shared: ['react', 'react-dom'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+  ],
+};
+```
 
 The last step before we can start to utilize the exposed components is to specify for the runtime where the Remote Entries for the Containers you wish to consume are located. We do this by simply adding a script tag to the HTML template of the remotes you wish to consume.
 
 **packages/application-a/public/index.html**
 
-    <head>
-      <!-- The remote entry for Application B -->
-      <script src="http://localhost:3002/remoteEntry.js"></script>    
-    </head>
+```html
+<head>
+  <!-- The remote entry for Application B -->
+  <script src="http://localhost:3002/remoteEntry.js"></script>    
+</head>
+```
 
 **packages/application-b/public/index.html**
 
-    <head>
-      <!-- The remote entry for Application A -->
-      <script src="http://localhost:3001/remoteEntry.js"></script>    
-    </head>
+```html
+<head>
+  <!-- The remote entry for Application A -->
+  <script src="http://localhost:3001/remoteEntry.js"></script>    
+</head>
+```
 
 The remote entry files are tiny mappings for webpack to resolve the individually imported modules without trasfering unnessesary info. They are also responsible for enabling the sharing of libraries that the packages use, in this case, when `Application A` requests `Application B`'s SayHelloFromB component, we do not send the React or ReactDOM over the wire as `Application A` already has a copy of it.
 
@@ -343,39 +370,43 @@ Starting with `Application A`, we can render the `SayHelloFromB` component like 
 
 **packages/application-a/src/bootstrap.jsx**
 
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    
-    import SayHelloFromB from 'application_b/SayHelloFromB';
-    
-    import App from './app';
-    
-    ReactDOM.render(
-      <>
-        <App />
-        <SayHelloFromB />
-      </>,
-      document.getElementById('root')
-    );
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import SayHelloFromB from 'application_b/SayHelloFromB';
+
+import App from './app';
+
+ReactDOM.render(
+  <>
+  	<App />
+  	<SayHelloFromB />
+  </>,
+  document.getElementById('root')
+);
+```
 
 `Application B` will look very similar, just importing from `application_a` instead:
 
 **packages/application-b/src/bootstrap.jsx**
 
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    
-    import SayHelloFromA from 'application_a/SayHelloFromA';
-    
-    import App from './app';
-    
-    ReactDOM.render(
-      <>
-        <App />
-        <SayHelloFromA />
-      </>,
-      document.getElementById('root')
-    );
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import SayHelloFromA from 'application_a/SayHelloFromA';
+
+import App from './app';
+
+ReactDOM.render(
+  <>
+    <App />
+    <SayHelloFromA />
+  </>,
+  document.getElementById('root')
+);
+```
 
 # A Few Notes
 
