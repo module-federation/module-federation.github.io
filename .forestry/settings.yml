@@ -1,7 +1,7 @@
 ---
 new_page_extension: md
 auto_deploy: false
-admin_path: ''
+admin_path: public
 webhook_url: 
 sections:
 - type: heading
@@ -18,12 +18,12 @@ sections:
   path: data/config.json
   label: Site Info
 upload_dir: public
-public_path: "/"
+public_path: ''
 front_matter_path: ''
 use_front_matter_path: false
 file_template: ":filename:"
 build:
-  preview_output_directory: .next
+  preview_output_directory: ".next"
   install_dependencies_command: yarn install
   preview_docker_image: node:10
   mount_path: "/srv"
