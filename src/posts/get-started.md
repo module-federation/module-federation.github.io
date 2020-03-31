@@ -2,7 +2,7 @@
 title: Getting Started With Federated Modules
 secondary_title: get up and running in 15 minutes
 author: Jacob Ebey
-date: 2020-03-29T16:04:26.000+00:00
+date: 2020-03-30T01:26:26Z
 
 ---
 # A Little Background
