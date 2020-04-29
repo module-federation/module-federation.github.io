@@ -9,7 +9,7 @@ Unless you've had your head under a rock, you've seen how Webpack 5 Module Feder
 
 This is arguably really cool, but Module Federation allows us to apply this idea to back-ends and work in what I'm calling a "noservice" architecture.
 
-## What is a noservice?
+## WTF is a noservice?
 
 Before we jump into what a noservice is, let's review the microservice architecture through the lens of Apollo Federation. An Apollo Federated Graph consists normally of a single "Gateway" that is responsible for receiving a query from a client then delegating parts of that query out to your microservices to fulfill the request.
 
