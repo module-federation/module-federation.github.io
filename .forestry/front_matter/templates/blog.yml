@@ -31,3 +31,5 @@ fields:
   config:
     required: true
   default: now
+pages:
+- posts/introducing-the-noservice-architecture.md
