@@ -15,7 +15,7 @@ Before we jump into what a noservice is, let's review the microservice architect
 
 ![](/microservice-architecture.jpg)
 
-One issue with this type of approach comes when you have multiple microservices interacting with the same external services / databases, leading each microservice to load / fetch the same data.
+One issue with this type of approach comes when you have multiple microservices interacting with the same external services / databases, leading each microservice to load / fetch duplicate data.
 
 The noservice architecture enables each team to work autonomously in their own repositories, just like in a microservice architecture, while sharing the same runtime at the gateway enabling us to not just get rid of network requests to microservices, but also share dataloaders throughout the execution of each query from the gateway to the noservices.
 
