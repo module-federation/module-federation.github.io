@@ -1,5 +1,5 @@
 {
-  "title": "Federated Libraries",
-  "description": "Start treating your component libraries as independently deployed services",
+  "title": "Module Federation ",
+  "description": "Official site for all things related to Webpack 5 Module Federation",
   "repositoryUrl": "https://github.com/jacob-ebey/federated-libraries-next"
 }
