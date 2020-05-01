@@ -1,7 +1,13 @@
 ---
 label: Videos
-hide_body: false
+hide_body: true
 fields:
+  - name: video_url
+    type: text
+    config:
+      required: false
+    label: Video URL
+    description: Some oEmbed url
   - type: text
     name: title
     label: title
