@@ -1,4 +1,10 @@
 ---
 label: Videos
 hide_body: true
-fields: []
+fields:
+- name: video_url
+  type: text
+  config:
+    required: false
+  label: Video URL
+  description: Some oEmbed url
