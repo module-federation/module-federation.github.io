@@ -5,7 +5,7 @@ fields:
   - name: video_url
     type: text
     config:
-      required: false
+      required: true
     label: Video URL
     description: Some oEmbed url
   - type: text
@@ -13,24 +13,6 @@ fields:
     label: title
     config:
       required: true
-  - type: text
-    name: secondary_title
-    label: secondary_title
-    config:
-      required: false
-  - name: author
-    type: select
-    default: The Collective Unconscious
-    config:
-      required: false
-      options: []
-      source:
-        type: documents
-        section: author-list
-        file: data/authors.json
-        path: authors
-    label: author
-    description: Choose author's name, add new author via Author List in  Sidebar
   - type: datetime
     name: date
     label: date
