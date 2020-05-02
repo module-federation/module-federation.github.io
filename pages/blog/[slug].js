@@ -1,10 +1,13 @@
 import * as React from 'react'
+import Head from 'next/head'
 import Prism from 'prismjs';
 import matter from 'gray-matter';
 import marksy from 'marksy/jsx';
 
 import ArticlePage from '../../components/article-page';
 import navItems from '../../nav-items';
+
+import config from '../../data/config.json'
 
 const compile = marksy({
   createElement: React.createElement,
@@ -18,33 +21,32 @@ const compile = marksy({
 //   return date.toDateString().slice(4);
 // }
 
-export default function BlogTemplate(props) {
-  const markdownBody = props.content
-  const frontmatter = props.data
-
-  const body = compile(markdownBody);
+export default function BlogPostPage({ content, data }) {
+  const body = compile(content);
 
   return (
-    <ArticlePage
-      menuItems={navItems.menuItems}
-      secondaryMenuItems={navItems.secondaryMenuItems}
-      title={frontmatter.title}
-      secondaryTitle={frontmatter.secondary_title}
-    >
-      <article className="center-images">
-        {body.tree}
-      </article>
-    </ArticlePage>
+    <>
+      <Head>
+        <title>{data.title} | {config.title}</title>
+        {data.secondary_title && <meta name="description" content={data.secondary_title}></meta>}
+      </Head>
+
+      <ArticlePage
+        menuItems={navItems.menuItems}
+        secondaryMenuItems={navItems.secondaryMenuItems}
+        title={data.title}
+        secondaryTitle={data.secondary_title}
+      >
+        <article className="center-images">
+          {body.tree}
+        </article>
+      </ArticlePage>
+    </>
   );
 }
 
-BlogTemplate.getInitialProps = async function(ctx) {
+BlogPostPage.getInitialProps = async function(ctx) {
   const { slug } = ctx.query
   const content = await import(`../../posts/${slug}.md`)
-  const config = await import(`../../data/config.json`)
-  const data = matter(content.default);
-  return {
-    siteTitle: config.title,
-    ...data
-  }
+  return matter(content.default)
 }

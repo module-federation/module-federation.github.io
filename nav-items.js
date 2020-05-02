@@ -21,6 +21,10 @@ const menuItems = {
       rel: 'noopener noreferrer',
       target: 'blank',
     },
+    {
+      href: '/blog',
+      children: 'Blog'
+    }
   ],
   secondaryMenuItems: [
     {
