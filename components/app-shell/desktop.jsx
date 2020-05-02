@@ -1,15 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
   Container,
   Menu,
-  Responsive,
   Segment,
   Visibility,
-} from 'semantic-ui-react';
-
-import getWidth from '../../utils/window/width';
+} from 'semantic-ui-react'
 
 /** @typedef {import('.').AppShellProps} AppShellProps */
 
@@ -19,16 +16,17 @@ import getWidth from '../../utils/window/width';
  */
 export default function DesktopShell({
   children,
+  className,
   heading: Heading,
   menuItems,
-  secondaryMenuItems,
+  secondaryMenuItems
 }) {
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const handleMenuClose = React.useCallback(() => setMenuOpen(false), [setMenuOpen]);
-  const handleMenuOpen = React.useCallback(() => setMenuOpen(true), [setMenuOpen]);
+  const [menuOpen, setMenuOpen] = React.useState(false)
+  const handleMenuClose = React.useCallback(() => setMenuOpen(false), [setMenuOpen])
+  const handleMenuOpen = React.useCallback(() => setMenuOpen(true), [setMenuOpen])
 
   return (
-    <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+    <div className={className}>
       <Visibility
         once={false}
         onBottomPassed={handleMenuOpen}
@@ -56,7 +54,7 @@ export default function DesktopShell({
                     {...props}
                     as={props.href ? 'a' : 'button'}
                   />
-                );
+                )
               })}
 
               <Menu.Item position="right">
@@ -80,8 +78,8 @@ export default function DesktopShell({
       </Visibility>
 
       {children}
-    </Responsive>
-  );
+    </div>
+  )
 }
 
 DesktopShell.propTypes = {
@@ -89,11 +87,11 @@ DesktopShell.propTypes = {
   heading: PropTypes.func,
   menuItems: PropTypes.arrayOf(PropTypes.any),
   secondaryMenuItems: PropTypes.arrayOf(PropTypes.any),
-};
+}
 
 DesktopShell.defaultProps = {
   children: null,
   heading: null,
   menuItems: null,
   secondaryMenuItems: null,
-};
+}

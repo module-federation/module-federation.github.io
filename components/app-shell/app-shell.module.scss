@@ -1,0 +1,15 @@
+@import '../../styles/mixins/respond-to.scss';
+
+.mobile {
+  @include respond-to('tablet') {
+    display: none;
+  }
+}
+
+.desktop {
+  display: none;
+
+  @include respond-to('tablet') {
+    display: unset;
+  }
+}

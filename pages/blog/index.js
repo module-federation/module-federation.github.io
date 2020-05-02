@@ -75,11 +75,9 @@ BlogPage.getInitialProps = async function () {
   const values = keys.map(ctx)
 
   const posts = keys.map((key, index) => {
-    console.log(key)
     const slug = key.split('/')[1].replace(/ /g, '-').slice(0, - 3).trim()
 
     const parsed = matter(values[index].default)
-    console.log(parsed)
 
     return {
       ...parsed.data,

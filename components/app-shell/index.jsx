@@ -1,9 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import DesktopShell from './desktop';
-import Footer from './footer';
-import MobileShell from './mobile';
+import DesktopShell from './desktop'
+import Footer from './footer'
+import MobileShell from './mobile'
+
+import styles from './app-shell.module.scss'
 
 /** @typedef {import('react')} React */
 
@@ -13,10 +15,10 @@ import MobileShell from './mobile';
 
 /**
  * @typedef {{
- *   children: React.ReactNode;
- *   heading: React.ComponentType<{ mobile?: boolean; }>;
- *   menuItems?: MenuItemProps[];
- *   secondaryMenuItems?: MenuItemProps[];
+ *   children: React.ReactNode
+ *   heading: React.ComponentType<{ mobile?: boolean }>
+ *   menuItems?: MenuItemProps[]
+ *   secondaryMenuItems?: MenuItemProps[]
  * }} AppShellProps
  */
 
@@ -28,11 +30,12 @@ export default function AppShell({
   children,
   heading,
   menuItems,
-  secondaryMenuItems,
+  secondaryMenuItems
 }) {
   return (
     <div>
       <DesktopShell
+        className={styles.desktop}
         heading={heading}
         menuItems={menuItems}
         secondaryMenuItems={secondaryMenuItems}
@@ -41,6 +44,7 @@ export default function AppShell({
         <Footer />
       </DesktopShell>
       <MobileShell
+        className={styles.mobile}
         heading={heading}
         menuItems={menuItems}
         secondaryMenuItems={secondaryMenuItems}
@@ -49,19 +53,19 @@ export default function AppShell({
         <Footer />
       </MobileShell>
     </div>
-  );
+  )
 }
 
 AppShell.propTypes = {
   children: PropTypes.node,
   heading: PropTypes.func,
   menuItems: PropTypes.arrayOf(PropTypes.any),
-  secondaryMenuItems: PropTypes.arrayOf(PropTypes.any),
-};
+  secondaryMenuItems: PropTypes.arrayOf(PropTypes.any)
+}
 
 AppShell.defaultProps = {
   children: null,
   heading: null,
   menuItems: null,
-  secondaryMenuItems: null,
-};
+  secondaryMenuItems: null
+}

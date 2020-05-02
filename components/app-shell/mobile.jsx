@@ -1,16 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
   Container,
   Icon,
   Menu,
-  Responsive,
   Segment,
-  Sidebar,
-} from 'semantic-ui-react';
-
-import getWidth from '../../utils/window/width';
+  Sidebar
+} from 'semantic-ui-react'
 
 /** @typedef {import('.').AppShellProps} AppShellProps */
 
@@ -20,26 +17,23 @@ import getWidth from '../../utils/window/width';
  */
 export default function MobileShell({
   children,
+  className,
   heading: Heading,
   menuItems,
-  secondaryMenuItems,
+  secondaryMenuItems
 }) {
-  const [sidebarOpened, setSidebarOpened] = React.useState(false);
+  const [sidebarOpened, setSidebarOpened] = React.useState(false)
   const handleSidebarHide = React.useCallback(
     () => setSidebarOpened(false),
     [setSidebarOpened],
-  );
+  )
   const handleSidebarToggle = React.useCallback(
     () => setSidebarOpened(!sidebarOpened),
     [setSidebarOpened, sidebarOpened],
-  );
+  )
 
   return (
-    <Responsive
-      as={Sidebar.Pushable}
-      getWidth={getWidth}
-      maxWidth={Responsive.onlyMobile.maxWidth}
-    >
+    <div className={className}>
       <Sidebar
         as={Menu}
         animation="push"
@@ -58,7 +52,7 @@ export default function MobileShell({
               href={href}
               as={href ? 'a' : 'button'}
             />
-          );
+          )
         })}
       </Sidebar>
 
@@ -94,8 +88,8 @@ export default function MobileShell({
 
         {children}
       </Sidebar.Pusher>
-    </Responsive>
-  );
+    </div>
+  )
 }
 
 MobileShell.propTypes = {
@@ -103,11 +97,11 @@ MobileShell.propTypes = {
   heading: PropTypes.func,
   menuItems: PropTypes.arrayOf(PropTypes.any),
   secondaryMenuItems: PropTypes.arrayOf(PropTypes.any),
-};
+}
 
 MobileShell.defaultProps = {
   children: null,
   heading: null,
   menuItems: null,
   secondaryMenuItems: null,
-};
+}
