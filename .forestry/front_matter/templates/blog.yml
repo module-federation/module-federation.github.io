@@ -44,3 +44,4 @@ fields:
     target="_blank">https://embed.ly/code</a>
 pages:
 - posts/introducing-the-noservice-architecture.md
+- posts/webpack-5-federation-a-game-changer-in-javascript-architecture.md
