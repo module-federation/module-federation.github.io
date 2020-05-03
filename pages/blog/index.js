@@ -66,7 +66,7 @@ export default function BlogPage ({ posts }) {
         <Segment style={{ padding: '8em 0em' }} vertical>
           <Container text className={container}>
             {posts.map((post, i) => {
-              const embeddedArticle = post.medium_link ? (<a href={post.medium_link} data-card-via={post.slug} data-card-chrome={0} className="embedly-card">Embedly</a>): null
+              const embeddedArticle = post.medium_link ? (<a href={post.medium_link} data-card-controls={0} data-card-via={post.slug} data-card-chrome={0} className="embedly-card">Embedly</a>): null
               return (
                 <React.Fragment key={post.slug}>
                   {i > 0 && <Divider style={{ margin: '3em 0em' }} />}

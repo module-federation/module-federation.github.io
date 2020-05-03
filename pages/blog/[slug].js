@@ -26,16 +26,28 @@ export function getStaticPaths () {
 
 const compile = marksy({
   createElement: React.createElement,
-  highlight (language, code) {
-    return Prism.highlight(code, Prism.languages[language], language)
-  }
-})
+  highlight(language, code) {
+    return Prism.highlight(code, Prism.languages[language], language);
+  },
+});
 
-export default function BlogPostPage ({content, data}) {
-  const body = compile(content)
+// function reformatDate(fullDate) {
+//   const date = new Date(fullDate)
+//   return date.toDateString().slice(4);
+// }
+
+export default function BlogPostPage({content, data}) {
+  const body = compile(content);
+  const scrollToView = () => {
+    var elmnt = document.getElementById("medium-content");
+    elmnt.contentWindow.focus();
+    elmnt.scrollIntoView();
+  }
   const embeddedArticle = data.medium_link ? (
-    <iframe width="100%" height="1000px" onLoad="this.contentWindow.focus()" style={{height: "200vh"}} frameBorder={0}
-            src="https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669"></iframe>) : null
+    <iframe id="medium-content" width="100%" height="1000px" onLoad={scrollToView} style={{height: "200vh"}}
+            frameBorder={0}
+            src={data.medium_link}></iframe>) : null
+
   return (
     <>
       <Head>
@@ -44,7 +56,7 @@ export default function BlogPostPage ({content, data}) {
       </Head>
 
       <ArticlePage
-        isText={!new Boolean(embeddedArticle)}
+        isText={!embeddedArticle}
         menuItems={navItems.menuItems}
         secondaryMenuItems={navItems.secondaryMenuItems}
         title={data.title}
