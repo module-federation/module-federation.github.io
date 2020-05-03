@@ -21,3 +21,4 @@ fields:
   default: now
 pages:
 - videos/introducing-federated-modules-in-webpack-5.md
+- videos/single-spa-federated-modules-wow.md
