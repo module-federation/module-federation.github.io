@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import matter from 'gray-matter'
 import {
   Button,
@@ -13,6 +14,7 @@ import config from '../../data/config.json'
 import navItems from '../../nav-items'
 import AppShell from '../../components/app-shell'
 import Hero from '../../components/hero'
+import {container} from  './blog.module.css'
 
 export function getStaticProps () {
   const ctx = require.context('../../posts', true, /\.md$/)
@@ -44,6 +46,7 @@ export default function BlogPage ({ posts }) {
     <>
       <Head>
         <title>The Federated Blog | {config.title}</title>
+        <script async src="//cdn.embedly.com/widgets/platform.js" charSet="UTF-8"></script>
       </Head>
 
       <AppShell
@@ -61,27 +64,32 @@ export default function BlogPage ({ posts }) {
         )}
       >
         <Segment style={{ padding: '8em 0em' }} vertical>
-          <Container text>
-            {posts.map((post, i) => (
-              <React.Fragment key={post.slug}>
-                {i > 0 && <Divider style={{ margin: '3em 0em' }} />}
+          <Container text className={container}>
+            {posts.map((post, i) => {
+              const embeddedArticle = post.medium_link ? (<a href={post.medium_link} data-card-via={post.slug} data-card-chrome={0} className="embedly-card">Embedly</a>): null
+              return (
+                <React.Fragment key={post.slug}>
+                  {i > 0 && <Divider style={{ margin: '3em 0em' }} />}
 
-                <Header as='h3' style={{ fontSize: '2em' }}>
-                  {post.title}
-                </Header>
-                <p>
-                  {post.secondary_title}
-                </p>
-                <Button
-                  as='a'
-                  size='large'
-                  href={`/blog/${post.slug}`}
-                  className='no-print'
-                >
-                  Read Post
-                </Button>
-              </React.Fragment>
-            ))}
+                  <Header as='h3' style={{ fontSize: '2em', display: embeddedArticle ? "none":"inherit" }}>
+                    {post.title}
+                  </Header>
+                  <p>
+                    {embeddedArticle ? (<Link href={`/blog/${post.slug}`}>
+                      <a>{embeddedArticle}</a>
+                    </Link>) : post.secondary_title}
+                  </p>
+                  <Button
+                    as='a'
+                    size='large'
+                    href={`/blog/${post.slug}`}
+                    className='no-print'
+                  >
+                    Read Post
+                  </Button>
+                </React.Fragment>
+              )
+            })}
           </Container>
         </Segment>
       </AppShell>

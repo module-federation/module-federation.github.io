@@ -23,20 +23,6 @@ export function getStaticPaths () {
   }
 }
 
-export async function getStaticProps ({ params: { slug } }) {
-  const markdown = await import(`../../posts/${slug}.md`)
-  const { content, data: { date, ...rest } } = matter(markdown.default)
-
-  return {
-    props: {
-      content,
-      data: {
-        ...rest,
-        date: date.toISOString().substring(0, 10)
-      }
-    }
-  }
-}
 
 const compile = marksy({
   createElement: React.createElement,
@@ -45,9 +31,11 @@ const compile = marksy({
   }
 })
 
-export default function BlogPostPage ({ content, data }) {
+export default function BlogPostPage ({content, data}) {
   const body = compile(content)
-
+  const embeddedArticle = data.medium_link ? (
+    <iframe width="100%" height="1000px" onLoad="this.contentWindow.focus()" style={{height: "200vh"}} frameBorder={0}
+            src="https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669"></iframe>) : null
   return (
     <>
       <Head>
@@ -56,13 +44,14 @@ export default function BlogPostPage ({ content, data }) {
       </Head>
 
       <ArticlePage
+        isText={!new Boolean(embeddedArticle)}
         menuItems={navItems.menuItems}
         secondaryMenuItems={navItems.secondaryMenuItems}
         title={data.title}
         secondaryTitle={data.secondary_title}
       >
         <article className='center-images'>
-          {body.tree}
+          {embeddedArticle ? embeddedArticle : body.tree}
         </article>
       </ArticlePage>
     </>
