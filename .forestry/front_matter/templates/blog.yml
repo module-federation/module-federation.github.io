@@ -31,5 +31,16 @@ fields:
   config:
     required: true
   default: now
+- name: medium_embed
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Medium Embed
+  description: Embed code from <a href="https://embed.ly/code" title="https://embed.ly/code"
+    target="_blank">https://embed.ly/code</a>
 pages:
 - posts/introducing-the-noservice-architecture.md
