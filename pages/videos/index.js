@@ -21,8 +21,7 @@ import Hero from '../../components/hero'
 //   return date.toDateString().slice(4);
 // }
 
-export default function BlogPage ({ posts,embeds }) {
-  console.log(embeds);
+export default function BlogPage({posts, embeds}) {
   return (
     <>
       <Head>
@@ -43,14 +42,14 @@ export default function BlogPage ({ posts,embeds }) {
           </Hero>
         )}
       >
-        <Segment style={{ padding: '8em 0em' }} vertical>
+        <Segment style={{padding: '8em 0em'}} vertical>
           <Container text>
             {embeds.map((embed, i) => {
               return (
                 <React.Fragment key={embed.thumbnail_url}>
-                  {i > 0 && <Divider style={{ margin: '3em 0em' }} />}
+                  {i > 0 && <Divider style={{margin: '3em 0em'}}/>}
 
-                  <Header as="h3" style={{ fontSize: '2em' }}>
+                  <Header as="h3" style={{fontSize: '2em'}}>
                     {embed.title}
                   </Header>
                   <div dangerouslySetInnerHTML={{__html: embed.html}}></div>
@@ -70,7 +69,7 @@ BlogPage.getInitialProps = async function () {
   const values = keys.map(ctx)
 
   const posts = keys.map((key, index) => {
-    const slug = key.split('/')[1].replace(/ /g, '-').slice(0, - 3).trim()
+    const slug = key.split('/')[1].replace(/ /g, '-').slice(0, -3).trim()
 
     const parsed = matter(values[index].default)
 
@@ -78,9 +77,12 @@ BlogPage.getInitialProps = async function () {
       ...parsed.data,
       slug
     }
-  })
-const embeds = await Promise.all(posts.map((post)=>{
-  return extract(post.video_url)
-}))
-  return { posts,embeds }
+  }).sort(function (a, b) {
+    return a.date - b.date;
+  }).reverse()
+
+  const embeds = await Promise.all(posts.map((post) => {
+    return extract(post.video_url)
+  }))
+  return {posts, embeds}
 }
