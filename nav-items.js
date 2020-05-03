@@ -24,7 +24,11 @@ const menuItems = {
     {
       href: '/blog',
       children: 'Blog'
-    }
+    },
+    // {
+    //   href: '/videos',
+    //   children: 'Videos'
+    // }
   ],
   secondaryMenuItems: [
     {

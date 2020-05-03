@@ -23,7 +23,7 @@ export default function HomePage() {
       heading={() => (
         <Hero>
           <Container text>
-            <h1>Federated Libraries</h1>
+            <h1>Module Federation</h1>
             <h2>
               start treating your component libraries as independently deployed services
             </h2>

@@ -28,18 +28,25 @@ module.exports = ({
    exportPathMap: async function() {
     const routes = {
       '/': { page : '/'},
+      '/videos': { page : '/videos'},
     };
     //get all .md files in the posts dir
     const blogs = glob.sync('./posts/**/*.md');
+    const videos = glob.sync('./videos/**/*.md');
 
     //remove path and extension to leave filename only
     const blogSlugs = blogs.map(file => file.split('/')[2].replace(/ /g, '-').slice(0, - 3).trim());
-    
+    const videoSlugs = videos.map(file => file.split('/')[2].replace(/ /g, '-').slice(0, - 3).trim());
+
     //add each blog to the routes obj
     blogSlugs.forEach(blog => {
       routes[`/blog/${blog}`] = { page: '/blog/[slug]', query: { slug: blog } };
     });
-  
+
+     videoSlugs.forEach(blog => {
+      routes[`/videos/${blog}`] = { page: '/videos/[slug]', query: { slug: blog } };
+    });
+
     return routes;
   }
 });
