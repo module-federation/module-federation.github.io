@@ -21,6 +21,7 @@ fields:
   default: now
 pages:
 - videos/introducing-federated-modules-in-webpack-5.md
+- videos/module-federation-decentralized-route-federation.md
 - videos/module-federation-interview-with-zack-jackson.md
 - videos/module-federation-shared-app-shell-state-routing-and-components.md
 - videos/single-spa-federated-modules-wow.md
