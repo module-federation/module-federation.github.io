@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import matter from 'gray-matter'
 import {
   Button,
@@ -15,7 +16,7 @@ import config from '../../data/config.json'
 import navItems from '../../nav-items'
 import AppShell from '../../components/app-shell'
 import Hero from '../../components/hero'
-
+import {videoWrapper,videoTitle} from './video.module.css'
 // function reformatDate(fullDate) {
 //   const date = new Date(fullDate)
 //   return date.toDateString().slice(4);
@@ -34,9 +35,9 @@ export default function BlogPage({posts, embeds}) {
         heading={() => (
           <Hero>
             <Container text>
-              <h1>The Federated Blog</h1>
+              <h1>The Federated Videos</h1>
               <h2>
-                stay up to date with the latest in module federation
+                Check out videos about module federation
               </h2>
             </Container>
           </Hero>
@@ -49,10 +50,10 @@ export default function BlogPage({posts, embeds}) {
                 <React.Fragment key={embed.thumbnail_url}>
                   {i > 0 && <Divider style={{margin: '3em 0em'}}/>}
 
-                  <Header as="h3" style={{fontSize: '2em'}}>
-                    {embed.title}
+                  <Header as="h3" className={videoTitle} style={{fontSize: '2em'}}>
+                   <Link href={`/videos/${embed.slug}`}>{embed.title}</Link>
                   </Header>
-                  <div dangerouslySetInnerHTML={{__html: embed.html}}></div>
+                  <div className={videoWrapper} dangerouslySetInnerHTML={{__html: embed.html}}></div>
                 </React.Fragment>
               )
             })}
@@ -83,7 +84,7 @@ BlogPage.getInitialProps = async function () {
 
   const embeds = await Promise.all(posts.map((post) => {
     return extract(post.video_url).then((obj)=>{
-     return Object.assign(obj,{title:post.title})
+     return Object.assign(obj,{title:post.title,slug:post.slug})
     })
   }))
   return {posts, embeds}
