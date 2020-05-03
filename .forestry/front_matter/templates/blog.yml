@@ -42,6 +42,12 @@ fields:
   label: Medium Embed
   description: Embed code from <a href="https://embed.ly/code" title="https://embed.ly/code"
     target="_blank">https://embed.ly/code</a>
+- name: medium_link
+  type: text
+  config:
+    required: false
+  label: Medium Link
+  description: URL to Medium Article
 pages:
 - posts/introducing-the-noservice-architecture.md
 - posts/webpack-5-federation-a-game-changer-in-javascript-architecture.md
