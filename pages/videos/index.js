@@ -82,7 +82,9 @@ BlogPage.getInitialProps = async function () {
   }).reverse()
 
   const embeds = await Promise.all(posts.map((post) => {
-    return extract(post.video_url)
+    return extract(post.video_url).then((obj)=>{
+     return Object.assign(obj,{title:post.title})
+    })
   }))
   return {posts, embeds}
 }
