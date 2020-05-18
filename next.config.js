@@ -27,7 +27,9 @@ module.exports = ({
   },
    exportPathMap: async function() {
     const routes = {
+      // '/': { page : '/',query:{utm_source:null,utm_medium:null,utm_campaign:null}},
       '/': { page : '/'},
+      '/redirect': { page : '/redirect'},
       '/videos': { page : '/videos'},
     };
     //get all .md files in the posts dir
