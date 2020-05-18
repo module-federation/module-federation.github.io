@@ -19,6 +19,8 @@ jobs:
       env:
         GH_PAGES: true
     - run: yarn export
+      env:
+        GH_PAGES: true
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
