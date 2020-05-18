@@ -9,17 +9,17 @@ const menuItems = {
   menuItems: [
     {
       href: '/',
-      children: 'Home',
+      children: 'Home'
     },
     {
       href: '/blog/get-started',
-      children: 'Get Started',
+      children: 'Get Started'
     },
     {
       href: 'https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669',
       children: 'Learn More',
       rel: 'noopener noreferrer',
-      target: 'blank',
+      target: 'blank'
     },
     {
       href: '/blog',
@@ -32,12 +32,12 @@ const menuItems = {
   ],
   secondaryMenuItems: [
     {
-      href: 'https://github.com/jacob-ebey/federated-libraries',
+      href: 'https://github.com/module-federation',
       children: 'GitHub',
       rel: 'noopener noreferrer',
-      target: 'blank',
-    },
-  ],
-};
+      target: 'blank'
+    }
+  ]
+}
 
-export default menuItems;
+export default menuItems

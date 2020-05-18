@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Container,
   Grid,
-  Segment,
-} from 'semantic-ui-react';
+  Segment
+} from 'semantic-ui-react'
 
-import AppShell from '../app-shell';
-import Hero from '../hero';
+import AppShell from '../app-shell'
+import Hero from '../hero'
 
-import styles from './article-page.module.scss';
+import styles from './article-page.module.scss'
 
 /** @typedef {import('react')} React */
 
@@ -29,12 +29,12 @@ import styles from './article-page.module.scss';
  * An article page component.
  * @param {ArticlePageProps} props
  */
-export default function ArticlePage({
+export default function ArticlePage ({
   children,
   title,
   secondaryTitle,
   menuItems,
-  secondaryMenuItems,
+  secondaryMenuItems
 }) {
   return (
     <AppShell
@@ -54,7 +54,7 @@ export default function ArticlePage({
       )}
     >
       <Segment className={styles.articlePageContent} vertical>
-        <Grid container stackable verticalAlign="middle" className="fb">
+        <Grid container stackable verticalAlign='middle' className='fb'>
           <Grid.Row>
             <Grid.Column width={16}>
               {children}
@@ -63,7 +63,7 @@ export default function ArticlePage({
         </Grid>
       </Segment>
     </AppShell>
-  );
+  )
 }
 
 ArticlePage.propTypes = {
@@ -71,12 +71,12 @@ ArticlePage.propTypes = {
   title: PropTypes.string.isRequired,
   secondaryTitle: PropTypes.string,
   menuItems: PropTypes.arrayOf(PropTypes.any),
-  secondaryMenuItems: PropTypes.arrayOf(PropTypes.any),
-};
+  secondaryMenuItems: PropTypes.arrayOf(PropTypes.any)
+}
 
 ArticlePage.defaultProps = {
   children: null,
   secondaryTitle: null,
   menuItems: null,
-  secondaryMenuItems: null,
-};
+  secondaryMenuItems: null
+}

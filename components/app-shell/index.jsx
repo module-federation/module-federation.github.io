@@ -26,7 +26,7 @@ import styles from './app-shell.module.scss'
  * The app shell used in the documentation.
  * @param {AppShellProps} props
  */
-export default function AppShell({
+export default function AppShell ({
   children,
   heading,
   menuItems,

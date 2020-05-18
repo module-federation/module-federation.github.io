@@ -1,31 +1,48 @@
 import * as React from 'react'
-import Prism from 'prismjs';
-import matter from 'gray-matter';
-import marksy from 'marksy/jsx';
+import matter from 'gray-matter'
 
+import ArticlePage from '../../components/article-page'
+import navItems from '../../nav-items'
+import { extract } from 'oembed-parser'
+import { videoContent, videoWrapper } from './video.module.css'
 
-import ArticlePage from '../../components/article-page';
-import navItems from '../../nav-items';
-import {extract} from "oembed-parser";
-import {videoContent,videoWrapper} from "./video.module.css"
+export function getStaticPaths () {
+  const ctx = require.context('../../videos', true, /\.md$/)
 
-const compile = marksy({
-  createElement: React.createElement,
-  highlight(language, code) {
-    return Prism.highlight(code, Prism.languages[language], language);
-  },
-});
+  const paths = ctx.keys().map((key) => {
+    const slug = key.split('/')[1].replace(/ /g, '-').slice(0, -3).trim()
+    return { params: { slug } }
+  })
 
-// function reformatDate(fullDate) {
-//   const date = new Date(fullDate)
-//   return date.toDateString().slice(4);
-// }
+  return {
+    paths,
+    fallback: false
+  }
+}
 
-export default function BlogTemplate(props) {
-  const markdownBody = props.content
+export async function getStaticProps ({ params: { slug } }) {
+  const markdown = await import(`../../videos/${slug}.md`)
+  const { content, data: { date, ...rest } } = matter(markdown.default)
+
+  const embed = await extract(rest.video_url).then((obj) => {
+    return Object.assign(obj, { title: rest.title })
+  })
+
+  return {
+    props: {
+      content,
+      data: {
+        ...rest,
+        date: date.toISOString().substring(0, 10)
+      },
+      embed
+    }
+  }
+}
+
+export default function BlogTemplate (props) {
   const frontmatter = props.data
 
-  const body = compile(markdownBody);
   return (
     <ArticlePage
       menuItems={navItems.menuItems}
@@ -34,24 +51,8 @@ export default function BlogTemplate(props) {
       secondaryTitle={frontmatter.secondary_title}
     >
       <article className={videoContent}>
-        <div className={videoWrapper} dangerouslySetInnerHTML={{__html: props.embed.html}}></div>
+        <div className={videoWrapper} dangerouslySetInnerHTML={{ __html: props.embed.html }} />
       </article>
     </ArticlePage>
-  );
-}
-
-BlogTemplate.getInitialProps = async function (ctx) {
-  const {slug} = ctx.query
-  const content = await import(`../../videos/${slug}.md`)
-  const config = await import(`../../data/config.json`)
-  const data = matter(content.default);
-
-  const embed = await extract(data.data.video_url).then((obj) => {
-    return Object.assign(obj, {title: data.data.title})
-  })
-  return {
-    siteTitle: config.title,
-    ...data,
-    embed
-  }
+  )
 }

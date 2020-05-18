@@ -6,18 +6,38 @@ import {
   Container,
   Divider,
   Header,
-  Segment,
-} from 'semantic-ui-react';
+  Segment
+} from 'semantic-ui-react'
 
 import config from '../../data/config.json'
 import navItems from '../../nav-items'
 import AppShell from '../../components/app-shell'
 import Hero from '../../components/hero'
 
-// function reformatDate(fullDate) {
-//   const date = new Date(fullDate)
-//   return date.toDateString().slice(4);
-// }
+export function getStaticProps () {
+  const ctx = require.context('../../posts', true, /\.md$/)
+  const keys = ctx.keys()
+  const values = keys.map(ctx)
+
+  const posts = keys.map((key, index) => {
+    const slug = key.split('/')[1].replace(/ /g, '-').slice(0, -3).trim()
+
+    const parsed = matter(values[index].default)
+
+    const { date, ...rest } = parsed.data
+    return {
+      ...rest,
+      slug,
+      date: date.toISOString().substring(0, 10)
+    }
+  })
+
+  console.log(posts)
+
+  return {
+    props: { posts }
+  }
+}
 
 export default function BlogPage ({ posts }) {
   return (
@@ -41,22 +61,22 @@ export default function BlogPage ({ posts }) {
         )}
       >
         <Segment style={{ padding: '8em 0em' }} vertical>
-        <Container text>
+          <Container text>
             {posts.map((post, i) => (
               <React.Fragment key={post.slug}>
                 {i > 0 && <Divider style={{ margin: '3em 0em' }} />}
 
-                <Header as="h3" style={{ fontSize: '2em' }}>
+                <Header as='h3' style={{ fontSize: '2em' }}>
                   {post.title}
                 </Header>
                 <p>
                   {post.secondary_title}
                 </p>
                 <Button
-                  as="a"
-                  size="large"
+                  as='a'
+                  size='large'
                   href={`/blog/${post.slug}`}
-                  className="no-print"
+                  className='no-print'
                 >
                   Read Post
                 </Button>
@@ -67,23 +87,4 @@ export default function BlogPage ({ posts }) {
       </AppShell>
     </>
   )
-}
-
-BlogPage.getInitialProps = async function () {
-  const ctx = require.context("../../posts", true, /\.md$/)
-  const keys = ctx.keys()
-  const values = keys.map(ctx)
-
-  const posts = keys.map((key, index) => {
-    const slug = key.split('/')[1].replace(/ /g, '-').slice(0, - 3).trim()
-
-    const parsed = matter(values[index].default)
-
-    return {
-      ...parsed.data,
-      slug
-    }
-  })
-
-  return { posts }
 }

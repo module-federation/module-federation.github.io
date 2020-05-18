@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import cn from 'classnames';
+import React from 'react'
+import PropTypes from 'prop-types'
+import cn from 'classnames'
 
-import styles from './hero.module.scss';
+import styles from './hero.module.scss'
 
 /** @typedef {import('react')} React */
 
@@ -17,20 +17,20 @@ import styles from './hero.module.scss';
  * The Hero used throughout the documentation.
  * @param {HeroProps} props
  */
-export default function Hero({ children, className }) {
+export default function Hero ({ children, className }) {
   return (
     <div className={cn(styles.hero, className)}>
       {children}
     </div>
-  );
+  )
 }
 
 Hero.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
-};
+  className: PropTypes.string
+}
 
 Hero.defaultProps = {
   children: null,
-  className: null,
-};
+  className: null
+}

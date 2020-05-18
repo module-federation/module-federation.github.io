@@ -3,26 +3,52 @@ import Head from 'next/head'
 import Link from 'next/link'
 import matter from 'gray-matter'
 import {
-  Button,
   Container,
   Divider,
   Header,
-  Segment,
-} from 'semantic-ui-react';
+  Segment
+} from 'semantic-ui-react'
 import {
-  extract,
-} from 'oembed-parser';
+  extract
+} from 'oembed-parser'
 import config from '../../data/config.json'
 import navItems from '../../nav-items'
 import AppShell from '../../components/app-shell'
 import Hero from '../../components/hero'
-import {videoWrapper,videoTitle} from './video.module.css'
-// function reformatDate(fullDate) {
-//   const date = new Date(fullDate)
-//   return date.toDateString().slice(4);
-// }
+import { videoWrapper, videoTitle } from './video.module.css'
 
-export default function BlogPage({posts, embeds}) {
+export async function getStaticProps () {
+  const ctx = require.context('../../videos', true, /\.md$/)
+  const keys = ctx.keys()
+  const values = keys.map(ctx)
+
+  const posts = keys.map((key, index) => {
+    const slug = key.split('/')[1].replace(/ /g, '-').slice(0, -3).trim()
+
+    const parsed = matter(values[index].default)
+
+    return {
+      ...parsed.data,
+      slug
+    }
+  }).sort(function (a, b) {
+    return a.date - b.date
+  }).reverse()
+
+  const embeds = await Promise.all(posts.map((post) => {
+    return extract(post.video_url).then((obj) => {
+      return Object.assign(obj, { title: post.title, slug: post.slug })
+    })
+  }))
+
+  return {
+    props: {
+      embeds
+    }
+  }
+}
+
+export default function BlogPage ({ embeds }) {
   return (
     <>
       <Head>
@@ -43,17 +69,17 @@ export default function BlogPage({posts, embeds}) {
           </Hero>
         )}
       >
-        <Segment style={{padding: '8em 0em'}} vertical>
+        <Segment style={{ padding: '8em 0em' }} vertical>
           <Container text>
             {embeds.map((embed, i) => {
               return (
                 <React.Fragment key={embed.thumbnail_url}>
-                  {i > 0 && <Divider style={{margin: '3em 0em'}}/>}
+                  {i > 0 && <Divider style={{ margin: '3em 0em' }} />}
 
-                  <Header as="h3" className={videoTitle} style={{fontSize: '2em'}}>
-                   <Link href={`/videos/${embed.slug}`}>{embed.title}</Link>
+                  <Header as='h3' className={videoTitle} style={{ fontSize: '2em' }}>
+                    <Link href={`/videos/${embed.slug}`}>{embed.title}</Link>
                   </Header>
-                  <div className={videoWrapper} dangerouslySetInnerHTML={{__html: embed.html}}></div>
+                  <div className={videoWrapper} dangerouslySetInnerHTML={{ __html: embed.html }} />
                 </React.Fragment>
               )
             })}
@@ -62,30 +88,4 @@ export default function BlogPage({posts, embeds}) {
       </AppShell>
     </>
   )
-}
-
-BlogPage.getInitialProps = async function () {
-  const ctx = require.context("../../videos", true, /\.md$/)
-  const keys = ctx.keys()
-  const values = keys.map(ctx)
-
-  const posts = keys.map((key, index) => {
-    const slug = key.split('/')[1].replace(/ /g, '-').slice(0, -3).trim()
-
-    const parsed = matter(values[index].default)
-
-    return {
-      ...parsed.data,
-      slug
-    }
-  }).sort(function (a, b) {
-    return a.date - b.date;
-  }).reverse()
-
-  const embeds = await Promise.all(posts.map((post) => {
-    return extract(post.video_url).then((obj)=>{
-     return Object.assign(obj,{title:post.title,slug:post.slug})
-    })
-  }))
-  return {posts, embeds}
 }

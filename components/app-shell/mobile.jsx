@@ -15,7 +15,7 @@ import {
  * The mobile app shell used in the documentation.
  * @param {AppShellProps} props
  */
-export default function MobileShell({
+export default function MobileShell ({
   children,
   className,
   heading: Heading,
@@ -25,18 +25,18 @@ export default function MobileShell({
   const [sidebarOpened, setSidebarOpened] = React.useState(false)
   const handleSidebarHide = React.useCallback(
     () => setSidebarOpened(false),
-    [setSidebarOpened],
+    [setSidebarOpened]
   )
   const handleSidebarToggle = React.useCallback(
     () => setSidebarOpened(!sidebarOpened),
-    [setSidebarOpened, sidebarOpened],
+    [setSidebarOpened, sidebarOpened]
   )
 
   return (
     <div className={className}>
       <Sidebar
         as={Menu}
-        animation="push"
+        animation='push'
         inverted
         onHide={handleSidebarHide}
         vertical
@@ -61,12 +61,12 @@ export default function MobileShell({
           inverted
           vertical
         >
-          <Container className="no-print">
-            <Menu inverted pointing secondary size="large">
+          <Container className='no-print'>
+            <Menu inverted pointing secondary size='large'>
               <Menu.Item onClick={handleSidebarToggle}>
-                <Icon name="sidebar" />
+                <Icon name='sidebar' />
               </Menu.Item>
-              <Menu.Item position="right">
+              <Menu.Item position='right'>
                 {secondaryMenuItems && secondaryMenuItems.map((props, i) => (
                   // @ts-ignore
                   <Button
@@ -96,12 +96,12 @@ MobileShell.propTypes = {
   children: PropTypes.node,
   heading: PropTypes.func,
   menuItems: PropTypes.arrayOf(PropTypes.any),
-  secondaryMenuItems: PropTypes.arrayOf(PropTypes.any),
+  secondaryMenuItems: PropTypes.arrayOf(PropTypes.any)
 }
 
 MobileShell.defaultProps = {
   children: null,
   heading: null,
   menuItems: null,
-  secondaryMenuItems: null,
+  secondaryMenuItems: null
 }

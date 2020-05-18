@@ -5,7 +5,7 @@ import {
   Container,
   Menu,
   Segment,
-  Visibility,
+  Visibility
 } from 'semantic-ui-react'
 
 /** @typedef {import('.').AppShellProps} AppShellProps */
@@ -14,7 +14,7 @@ import {
  * The desktop app shell used in the documentation.
  * @param {AppShellProps} props
  */
-export default function DesktopShell({
+export default function DesktopShell ({
   children,
   className,
   heading: Heading,
@@ -41,8 +41,8 @@ export default function DesktopShell({
             inverted={!menuOpen}
             pointing={!menuOpen}
             secondary={!menuOpen}
-            size="large"
-            className="no-print"
+            size='large'
+            className='no-print'
           >
             <Container>
               {menuItems && menuItems.map(({ ...props }, i) => {
@@ -57,7 +57,7 @@ export default function DesktopShell({
                 )
               })}
 
-              <Menu.Item position="right">
+              <Menu.Item position='right'>
                 {secondaryMenuItems && secondaryMenuItems.map((props, i) => (
                   // @ts-ignore
                   <Button
@@ -86,12 +86,12 @@ DesktopShell.propTypes = {
   children: PropTypes.node,
   heading: PropTypes.func,
   menuItems: PropTypes.arrayOf(PropTypes.any),
-  secondaryMenuItems: PropTypes.arrayOf(PropTypes.any),
+  secondaryMenuItems: PropTypes.arrayOf(PropTypes.any)
 }
 
 DesktopShell.defaultProps = {
   children: null,
   heading: null,
   menuItems: null,
-  secondaryMenuItems: null,
+  secondaryMenuItems: null
 }
