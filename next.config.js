@@ -1,7 +1,6 @@
 // const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 module.exports = ({
-  assetPrefix: process.env.GH_PAGES ? "site" : "",
   webpack: function (config) {
     config.module.rules.push({
       test: /\.md$/,
