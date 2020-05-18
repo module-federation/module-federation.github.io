@@ -21,3 +21,8 @@ jobs:
     - run: yarn export
       env:
         GH_PAGES: true
+    - name: Deploy 🚀
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GH_ACCESS_TOKEN }}
+        publish_dir: ./out
