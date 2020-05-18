@@ -22,15 +22,14 @@ function getUrlParams(search) {
   gtag('js', new Date());
   gtag('config', 'UA-120967034-1');
   var redirect = getUrlParams(window.location.href).utm_medium
-  console.log(redirect)
-  if(redirect) window.location.replace(redirect)
+  if(redirect) setTimeout(){window.location.replace(redirect),10}
 `
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
         <title>{config.title}</title>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120967034-1"></script>
+        <script src="https://www.googletagmanager.com/gtag/js?id=UA-120967034-1"></script>
 
         <meta name="description" content={config.description}></meta>
         <script dangerouslySetInnerHTML={{__html:tracking}}/>
