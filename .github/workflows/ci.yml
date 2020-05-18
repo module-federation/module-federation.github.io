@@ -21,9 +21,3 @@ jobs:
     - run: yarn export
       env:
         GH_PAGES: true
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: out
