@@ -22,7 +22,7 @@ function getUrlParams(search) {
   gtag('js', new Date());
   gtag('config', 'UA-120967034-1');
   var redirect = getUrlParams(window.location.href).utm_medium
-  if(redirect) setTimeout(){window.location.replace(redirect),10}
+  if(redirect) window.location.replace(redirect)
 `
 function MyApp({ Component, pageProps }) {
   return (
