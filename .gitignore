@@ -1,6 +1,0 @@
-.DS_STORE
-node_modules/
-.next/
-.env
-out/
-yarn-error.log
