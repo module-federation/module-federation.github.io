@@ -21,8 +21,8 @@ function getUrlParams(search) {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'UA-120967034-1');
-  var redirect = getUrlParams(window.location.href).medium
-  window.location.replace = redirect
+  var redirect = getUrlParams(window.location.href).utm_medium
+  if(redirect) window.location.replace = redirect
 `
 function MyApp({ Component, pageProps }) {
   return (
@@ -42,4 +42,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-//http://localhost:3000/?utm_source=ModuleFederationExamples&utm_medium=https://github.com/sponsors/ScriptedAlchemy&utm_campaign=sponsor_link
+// https://federated-libraries-next.now.sh/?utm_source=ModuleFederationExamples&utm_medium=https://github.com/sponsors/ScriptedAlchemy&utm_campaign=sponsor_link
