@@ -2582,10 +2582,10 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-dynamic-resource-hints@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/dynamic-resource-hints/-/dynamic-resource-hints-0.0.3.tgz#d33eb005ceee6b4e8f5ded805bff8a3d3ae6b624"
-  integrity sha512-AnAdT3uhaL/zKyKVHRsU83r0aDggB2VNcgn0dIDRIdq9zToM0sEdToaU3iDbpZiMaYN0CURLQMpOMP+eB2OgNg==
+dynamic-resource-hints@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/dynamic-resource-hints/-/dynamic-resource-hints-0.0.7.tgz#45599e42773c95aa6ae66a825c91bce0eacfac90"
+  integrity sha512-aFzv8E9NWzMCQuYsabckyhy3wo/bS+FqS2+LZYkS/oKJqNQlAps/ILFRMKU7FJe5P87UWuCxLBaN4qudctyNCQ==
 
 ecdsa-sig-formatter@1.0.11:
   version "1.0.11"

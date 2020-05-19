@@ -11,10 +11,6 @@ import Hero from "../../components/hero";
 import { container } from "./blog.module.css";
 import Link from "next/link";
 import preloadResource from "dynamic-resource-hints";
-// function reformatDate(fullDate) {
-//   const date = new Date(fullDate)
-//   return date.toDateString().slice(4);
-// }
 
 export default function BlogPage({ posts }) {
   return (
@@ -62,8 +58,12 @@ export default function BlogPage({ posts }) {
                   rootMargin="200px"
                   onChange={(inView, entry) => {
                     if (inView) {
-                      preloadResource(post.slug, "prefetch", "document");
-                      preloadResource(post.slug, "prerender");
+                      if(post.medium_link) {
+                        preloadResource(`${post.medium_link}`, "prefetch", "document");
+                        preloadResource(`${post.medium_link}`, "prerender");
+                      }
+                      preloadResource(`/blog/${post.slug}`, "prefetch", "document");
+                      preloadResource(`/blog/${post.slug}`, "prerender");
                     }
                   }}
                 >
