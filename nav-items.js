@@ -8,36 +8,37 @@
 const menuItems = {
   menuItems: [
     {
-      href: '/',
-      children: 'Home'
+      href: "/",
+      children: "Home",
     },
     {
-      href: '/blog/get-started',
-      children: 'Get Started'
+      href: "/blog/get-started",
+      children: "Get Started",
     },
     {
-      href: 'https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669',
-      children: 'Learn More',
-      rel: 'noopener noreferrer',
-      target: 'blank'
+      href:
+        "https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669",
+      children: "Learn More",
+      rel: "noopener noreferrer",
+      target: "blank",
     },
     {
-      href: '/blog',
-      children: 'Blog'
+      href: "/blog",
+      children: "Blog",
     },
     {
-      href: '/videos',
-      children: 'Videos'
-    }
+      href: "/videos",
+      children: "Videos",
+    },
   ],
   secondaryMenuItems: [
     {
-      href: 'https://github.com/module-federation',
-      children: 'GitHub',
-      rel: 'noopener noreferrer',
-      target: 'blank'
-    }
-  ]
-}
+      href: "https://github.com/module-federation",
+      children: "GitHub",
+      rel: "noopener noreferrer",
+      target: "blank",
+    },
+  ],
+};
 
-export default menuItems
+export default menuItems;

@@ -1,11 +1,11 @@
 // const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
-module.exports = ({
+module.exports = {
   webpack: function (config) {
     config.module.rules.push({
       test: /\.md$/,
-      use: 'raw-loader'
-    })
+      use: "raw-loader",
+    });
 
     // config.plugins.push(new ModuleFederationPlugin({
     //   name: 'federated_libraries',
@@ -22,6 +22,6 @@ module.exports = ({
     // config.resolve.alias.buffer = 'buffer';
     // config.resolve.alias.path = 'path-browserify';
 
-    return config
-  }
-})
+    return config;
+  },
+};
