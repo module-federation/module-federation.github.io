@@ -1,12 +1,11 @@
-import React from "react";
-import Head from "next/head";
-import "intersection-observer";
+import React from 'react'
+import Head from 'next/head'
 
-import "prism-themes/themes/prism-vs.css";
-import "semantic-ui-css/semantic.min.css";
+import 'prism-themes/themes/prism-vs.css'
+import 'semantic-ui-css/semantic.min.css'
 
-import config from "../data/config.json";
-import "../styles/bootstrap.css";
+import config from '../data/config.json'
+import '../styles/bootstrap.css'
 const tracking = `
 function getUrlParams(search) {
     const hashes = search.slice(search.indexOf('?') + 1).split('&')
@@ -24,23 +23,23 @@ function getUrlParams(search) {
   gtag('config', 'UA-120967034-1');
   var redirect = getUrlParams(window.location.href).utm_medium
   if(redirect) window.location.replace(redirect)
-`;
-function MyApp({ Component, pageProps }) {
+`
+function MyApp ({ Component, pageProps }) {
   return (
     <>
       <Head>
         <title>{config.title}</title>
-        <script src="https://www.googletagmanager.com/gtag/js?id=UA-120967034-1" />
+        <script src='https://www.googletagmanager.com/gtag/js?id=UA-120967034-1' />
 
-        <meta name="description" content={config.description} />
+        <meta name='description' content={config.description} />
         <script dangerouslySetInnerHTML={{ __html: tracking }} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </Head>
 
       <Component {...pageProps} />
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
 // https://federated-libraries-next.now.sh/?utm_source=ModuleFederationExamples&utm_medium=https://github.com/sponsors/ScriptedAlchemy&utm_campaign=sponsor_link

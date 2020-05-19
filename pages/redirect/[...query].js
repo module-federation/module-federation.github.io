@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react'
 
-export default function Redirect() {
-  return null;
+export default function Redirect () {
+  return null
 }

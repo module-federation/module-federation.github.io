@@ -34,8 +34,7 @@ export default function ArticlePage ({
   title,
   secondaryTitle,
   menuItems,
-  secondaryMenuItems,
-  isText = true
+  secondaryMenuItems
 }) {
   return (
     <AppShell
@@ -54,14 +53,14 @@ export default function ArticlePage ({
         </Hero>
       )}
     >
-      <Segment className={isText ? styles.articlePageContent : null} vertical>
-        {isText ? (<Grid container stackable verticalAlign='middle' className='fb'>
+      <Segment className={styles.articlePageContent} vertical>
+        <Grid container stackable verticalAlign='middle' className='fb'>
           <Grid.Row>
             <Grid.Column width={16}>
               {children}
             </Grid.Column>
           </Grid.Row>
-        </Grid>) : children}
+        </Grid>
       </Segment>
     </AppShell>
   )

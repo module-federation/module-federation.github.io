@@ -3,8 +3,8 @@ title: Getting Started With Federated Modules
 secondary_title: get up and running in 15 minutes
 author: Jacob Ebey
 date: 2020-03-30T01:26:26Z
----
 
+---
 # A Little Background
 
 If you've worked as a developer long enough, you've ran into the inevitable problem of sharing components between teams. Let's be real here, how often does this lead to a good experience for anyone?
@@ -41,7 +41,9 @@ Start by creating a new project folder with the following `package.json` to allo
 {
   "name": "federation-example",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "start": "wsrun --parallel start",
     "build": "yarn workspaces run build",
@@ -83,7 +85,6 @@ We will now create two folders for our SPAs to live in under a new `packages` di
   }
 }
 ```
-
 **packages/application-b/package.json**
 
 ```json
@@ -126,20 +127,18 @@ Next up is bootstraping our SPA React applications. We need to create a `src` di
 **packages/application-{a,b}/src/index.js**
 
 ```javascript
-import("./bootstrap");
+import('./bootstrap');
 ```
-
 **packages/application-{a,b}/src/bootstrap.jsx**
 
 ```javascript
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import App from "./app";
+import App from './app';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
-
 We also need a `public` directory in each of the packages with the the following html template that we will modify per SPA later:
 
 **packages/application-{a,b}/public/index.html**
@@ -147,7 +146,8 @@ We also need a `public` directory in each of the packages with the the following
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head> </head>
+  <head>
+  </head>
   <body>
     <div id="root"></div>
   </body>
@@ -159,7 +159,7 @@ Now we can implement our two `app.jsx` files for each application that will hous
 **packages/application-a/src/app.jsx**
 
 ```javascript
-import React from "react";
+import React from 'react';
 
 export default function SayHelloFromA() {
   return <h1>Hello from Application A!</h1>;
@@ -169,7 +169,7 @@ export default function SayHelloFromA() {
 **packages/application-b/src/app.jsx**
 
 ```javascript
-import React from "react";
+import React from 'react';
 
 export default function SayHelloFromB() {
   return <h1>Hello from Application B!</h1>;
@@ -181,28 +181,28 @@ And now finally, we'll add our base `webpack.config.js` for each application:
 **packages/application-{a,b}/webpack.config.js**
 
 ```javascript
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
-const mode = process.env.NODE_ENV || "production";
+const mode = process.env.NODE_ENV || 'production';
 
 module.exports = {
   mode,
-  entry: "./src/index",
-  devtool: "source-map",
+  entry: './src/index',
+  devtool: 'source-map',
   optimization: {
-    minimize: mode === "production",
+    minimize: mode === 'production',
   },
   resolve: {
-    extensions: [".jsx", ".js", ".json"],
+    extensions: ['.jsx', '.js', '.json'],
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: require.resolve("babel-loader"),
+        loader: require.resolve('babel-loader'),
         options: {
-          presets: [require.resolve("@babel/preset-react")],
+          presets: [require.resolve('@babel/preset-react')],
         },
       },
     ],
@@ -210,7 +210,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      template: './public/index.html',
     }),
   ],
 };
@@ -231,31 +231,31 @@ We'll start by adding the `ModuleFederationPlugin` to `Application A`, this will
 **packages/application-a/webpack.config.js**
 
 ```javascript
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
-const mode = process.env.NODE_ENV || "production";
+const mode = process.env.NODE_ENV || 'production';
 
 module.exports = {
   mode,
-  entry: "./src/index",
+  entry: './src/index',
   output: {
-    publicPath: "http://localhost:3001/", // New
+    publicPath: 'http://localhost:3001/', // New
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   optimization: {
-    minimize: mode === "production",
+    minimize: mode === 'production',
   },
   resolve: {
-    extensions: [".jsx", ".js", ".json"],
+    extensions: ['.jsx', '.js', '.json'],
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: require.resolve("babel-loader"),
+        loader: require.resolve('babel-loader'),
         options: {
-          presets: [require.resolve("@babel/preset-react")],
+          presets: [require.resolve('@babel/preset-react')],
         },
       },
     ],
@@ -264,19 +264,19 @@ module.exports = {
   plugins: [
     // New
     new ModuleFederationPlugin({
-      name: "application_a",
-      library: { type: "var", name: "application_a" },
-      filename: "remoteEntry.js",
+      name: 'application_a',
+      library: { type: 'var', name: 'application_a' },
+      filename: 'remoteEntry.js',
       exposes: {
-        SayHelloFromA: "./src/app",
+        'SayHelloFromA': './src/app',
       },
       remotes: {
-        application_b: "application_b",
+        'application_b': 'application_b',
       },
-      shared: ["react", "react-dom"],
+      shared: ['react', 'react-dom'],
     }),
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      template: './public/index.html',
     }),
   ],
 };
@@ -289,31 +289,31 @@ We will do the same thing fro `Applicaiton B`, specifying that it exposes it's A
 **packages/application-b/webpack.config.js**
 
 ```javascript
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
-const mode = process.env.NODE_ENV || "production";
+const mode = process.env.NODE_ENV || 'production';
 
 module.exports = {
   mode,
-  entry: "./src/index",
+  entry: './src/index',
   output: {
-    publicPath: "http://localhost:3002/", // New
+    publicPath: 'http://localhost:3002/', // New
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   optimization: {
-    minimize: mode === "production",
+    minimize: mode === 'production',
   },
   resolve: {
-    extensions: [".jsx", ".js", ".json"],
+    extensions: ['.jsx', '.js', '.json'],
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: require.resolve("babel-loader"),
+        loader: require.resolve('babel-loader'),
         options: {
-          presets: [require.resolve("@babel/preset-react")],
+          presets: [require.resolve('@babel/preset-react')],
         },
       },
     ],
@@ -322,19 +322,19 @@ module.exports = {
   plugins: [
     // New
     new ModuleFederationPlugin({
-      name: "application_b",
-      library: { type: "var", name: "application_b" },
-      filename: "remoteEntry.js",
+      name: 'application_b',
+      library: { type: 'var', name: 'application_b' },
+      filename: 'remoteEntry.js',
       exposes: {
-        SayHelloFromB: "./src/app",
+        'SayHelloFromB': './src/app',
       },
       remotes: {
-        application_a: "application_a",
+        'application_a': 'application_a',
       },
-      shared: ["react", "react-dom"],
+      shared: ['react', 'react-dom'],
     }),
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      template: './public/index.html',
     }),
   ],
 };
@@ -347,7 +347,7 @@ The last step before we can start to utilize the exposed components is to specif
 ```html
 <head>
   <!-- The remote entry for Application B -->
-  <script src="http://localhost:3002/remoteEntry.js"></script>
+  <script src="http://localhost:3002/remoteEntry.js"></script>    
 </head>
 ```
 
@@ -356,7 +356,7 @@ The last step before we can start to utilize the exposed components is to specif
 ```html
 <head>
   <!-- The remote entry for Application A -->
-  <script src="http://localhost:3001/remoteEntry.js"></script>
+  <script src="http://localhost:3001/remoteEntry.js"></script>    
 </head>
 ```
 
@@ -371,19 +371,19 @@ Starting with `Application A`, we can render the `SayHelloFromB` component like 
 **packages/application-a/src/bootstrap.jsx**
 
 ```javascript
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import SayHelloFromB from "application_b/SayHelloFromB";
+import SayHelloFromB from 'application_b/SayHelloFromB';
 
-import App from "./app";
+import App from './app';
 
 ReactDOM.render(
   <>
-    <App />
-    <SayHelloFromB />
+  	<App />
+  	<SayHelloFromB />
   </>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 ```
 
@@ -392,19 +392,19 @@ ReactDOM.render(
 **packages/application-b/src/bootstrap.jsx**
 
 ```javascript
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import SayHelloFromA from "application_a/SayHelloFromA";
+import SayHelloFromA from 'application_a/SayHelloFromA';
 
-import App from "./app";
+import App from './app';
 
 ReactDOM.render(
   <>
     <App />
     <SayHelloFromA />
   </>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 ```
 
