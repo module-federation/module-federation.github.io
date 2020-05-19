@@ -1,39 +1,20 @@
 import * as React from "react";
 import Head from "next/head";
-import Link from "next/link";
 import matter from "gray-matter";
 import { Button, Container, Divider, Header, Segment } from "semantic-ui-react";
+import { InView } from "react-intersection-observer";
 
 import config from "../../data/config.json";
 import navItems from "../../nav-items";
 import AppShell from "../../components/app-shell";
 import Hero from "../../components/hero";
 import { container } from "./blog.module.css";
-
-export function getStaticProps() {
-  const ctx = require.context("../../posts", true, /\.md$/);
-  const keys = ctx.keys();
-  const values = keys.map(ctx);
-
-  const posts = keys.map((key, index) => {
-    const slug = key.split("/")[1].replace(/ /g, "-").slice(0, -3).trim();
-
-    const parsed = matter(values[index].default);
-
-    const { date, ...rest } = parsed.data;
-    return {
-      ...rest,
-      slug,
-      date: date.toISOString().substring(0, 10),
-    };
-  });
-
-  console.log(posts);
-
-  return {
-    props: { posts },
-  };
-}
+import Link from "next/link";
+import preloadResource from "dynamic-resource-hints";
+// function reformatDate(fullDate) {
+//   const date = new Date(fullDate)
+//   return date.toDateString().slice(4);
+// }
 
 export default function BlogPage({ posts }) {
   return (
@@ -74,7 +55,18 @@ export default function BlogPage({ posts }) {
                 </a>
               ) : null;
               return (
-                <React.Fragment key={post.slug}>
+                <InView
+                  as="div"
+                  key={post.slug}
+                  triggerOnce={true}
+                  rootMargin="200px"
+                  onChange={(inView, entry) => {
+                    if (inView) {
+                      preloadResource(post.slug, "prefetch", "document");
+                      preloadResource(post.slug, "prerender");
+                    }
+                  }}
+                >
                   {i > 0 && <Divider style={{ margin: "3em 0em" }} />}
 
                   <Header
@@ -88,9 +80,7 @@ export default function BlogPage({ posts }) {
                   </Header>
                   <p>
                     {embeddedArticle ? (
-                      <Link href={`/blog/${post.slug}`}>
-                        <a>{embeddedArticle}</a>
-                      </Link>
+                      <Link href={`/blog/${post.slug}`}>{embeddedArticle}</Link>
                     ) : (
                       post.secondary_title
                     )}
@@ -103,7 +93,7 @@ export default function BlogPage({ posts }) {
                   >
                     Read Post
                   </Button>
-                </React.Fragment>
+                </InView>
               );
             })}
           </Container>
@@ -112,3 +102,22 @@ export default function BlogPage({ posts }) {
     </>
   );
 }
+
+BlogPage.getInitialProps = async function () {
+  const ctx = require.context("../../posts", true, /\.md$/);
+  const keys = ctx.keys();
+  const values = keys.map(ctx);
+
+  const posts = keys.map((key, index) => {
+    const slug = key.split("/")[1].replace(/ /g, "-").slice(0, -3).trim();
+
+    const parsed = matter(values[index].default);
+
+    return {
+      ...parsed.data,
+      slug,
+    };
+  });
+
+  return { posts };
+};

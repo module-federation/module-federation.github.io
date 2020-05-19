@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import "intersection-observer";
 
 import "prism-themes/themes/prism-vs.css";
 import "semantic-ui-css/semantic.min.css";
