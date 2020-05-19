@@ -3,7 +3,6 @@ import Head from "next/head";
 import Prism from "prismjs";
 import matter from "gray-matter";
 import marksy from "marksy/jsx";
-import fetch from "node-fetch";
 
 import ArticlePage from "../../components/article-page";
 import navItems from "../../nav-items";
@@ -17,25 +16,14 @@ const compile = marksy({
   },
 });
 
-// function reformatDate(fullDate) {
-//   const date = new Date(fullDate)
-//   return date.toDateString().slice(4);
-// }
-
 export default function BlogPostPage({ content, data }) {
   const body = compile(content);
-  const scrollToView = () => {
-    var elmnt = document.getElementById("medium-content");
-    elmnt.contentWindow.focus();
-    elmnt.scrollIntoView();
-  };
   const embeddedArticle = data.medium_link ? (
     <iframe
       id="medium-content"
+      referrerPolicy="no-referrer"
       width="100%"
-      height="1000px"
-      onLoad={scrollToView}
-      style={{ height: "200vh" }}
+      style={{ height: "200vh", marginTop: "-50px" }}
       frameBorder={0}
       src={data.medium_link}
     ></iframe>
@@ -58,7 +46,7 @@ export default function BlogPostPage({ content, data }) {
         secondaryTitle={data.secondary_title}
         isText={!embeddedArticle}
       >
-        <article className="center-images">
+        <article id="frame" className="center-images">
           {embeddedArticle ? embeddedArticle : body.tree}
         </article>
       </ArticlePage>

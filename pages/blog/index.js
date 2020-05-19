@@ -3,6 +3,7 @@ import Head from "next/head";
 import matter from "gray-matter";
 import { Button, Container, Divider, Header, Segment } from "semantic-ui-react";
 import { InView } from "react-intersection-observer";
+import { useRouter } from "next/router";
 
 import config from "../../data/config.json";
 import navItems from "../../nav-items";
@@ -13,6 +14,8 @@ import Link from "next/link";
 import preloadResource from "dynamic-resource-hints";
 
 export default function BlogPage({ posts }) {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -39,6 +42,10 @@ export default function BlogPage({ posts }) {
         <Segment style={{ padding: "8em 0em" }} vertical>
           <Container text className={container}>
             {posts.map((post, i) => {
+              const handleClick = (e) => {
+                e.preventDefault();
+                router.push("/blog/" + post.slug + "#frame");
+              };
               const embeddedArticle = post.medium_link ? (
                 <a
                   href={post.medium_link}
@@ -58,11 +65,19 @@ export default function BlogPage({ posts }) {
                   rootMargin="200px"
                   onChange={(inView, entry) => {
                     if (inView) {
-                      if(post.medium_link) {
-                        preloadResource(`${post.medium_link}`, "prefetch", "document");
+                      if (post.medium_link) {
+                        preloadResource(
+                          `${post.medium_link}`,
+                          "prefetch",
+                          "document"
+                        );
                         preloadResource(`${post.medium_link}`, "prerender");
                       }
-                      preloadResource(`/blog/${post.slug}`, "prefetch", "document");
+                      preloadResource(
+                        `/blog/${post.slug}`,
+                        "prefetch",
+                        "document"
+                      );
                       preloadResource(`/blog/${post.slug}`, "prerender");
                     }
                   }}
@@ -78,9 +93,9 @@ export default function BlogPage({ posts }) {
                   >
                     {post.title}
                   </Header>
-                  <p>
+                  <p onClick={embeddedArticle ? handleClick : () => {}}>
                     {embeddedArticle ? (
-                      <Link href={`/blog/${post.slug}`}>{embeddedArticle}</Link>
+                      <>{embeddedArticle}</>
                     ) : (
                       post.secondary_title
                     )}
@@ -88,7 +103,7 @@ export default function BlogPage({ posts }) {
                   <Button
                     as="a"
                     size="large"
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}#frame`}
                     className="no-print"
                   >
                     Read Post
