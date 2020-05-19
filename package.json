@@ -11,7 +11,9 @@
     "start": "next start",
     "export": "next export",
     "deploy": "yarn build && yarn export",
-    "forestry-preview": "next -p 8080 -H 0.0.0.0"
+    "forestry-preview": "next -p 8080 -H 0.0.0.0",
+    "prettier": "prettier --write \"**/*.{js,json,md,ts,tsx}\"",
+    "prettier:check": "prettier --list-different \"**/*.{js,json,md,ts,tsx}\""
   },
   "dependencies": {
     "buffer": "^5.5.0",
@@ -29,6 +31,7 @@
     "semantic-ui-react": "^0.88.2"
   },
   "devDependencies": {
+    "prettier": "^2.0.5",
     "babel-plugin-prismjs": "^2.0.1",
     "raw-loader": "^4.0.0",
     "sass": "^1.26.3"
