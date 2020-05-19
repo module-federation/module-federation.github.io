@@ -1,52 +1,54 @@
-import * as React from "react";
-import Head from "next/head";
-import Link from "next/link";
-import matter from "gray-matter";
-import { Container, Divider, Header, Segment } from "semantic-ui-react";
-import { extract } from "oembed-parser";
-import config from "../../data/config.json";
-import navItems from "../../nav-items";
-import AppShell from "../../components/app-shell";
-import Hero from "../../components/hero";
-import { videoWrapper, videoTitle } from "./video.module.css";
+import * as React from 'react'
+import Head from 'next/head'
+import Link from 'next/link'
+import matter from 'gray-matter'
+import {
+  Container,
+  Divider,
+  Header,
+  Segment
+} from 'semantic-ui-react'
+import {
+  extract
+} from 'oembed-parser'
+import config from '../../data/config.json'
+import navItems from '../../nav-items'
+import AppShell from '../../components/app-shell'
+import Hero from '../../components/hero'
+import { videoWrapper, videoTitle } from './video.module.css'
 
-export async function getStaticProps() {
-  const ctx = require.context("../../videos", true, /\.md$/);
-  const keys = ctx.keys();
-  const values = keys.map(ctx);
+export async function getStaticProps () {
+  const ctx = require.context('../../videos', true, /\.md$/)
+  const keys = ctx.keys()
+  const values = keys.map(ctx)
 
-  const posts = keys
-    .map((key, index) => {
-      const slug = key.split("/")[1].replace(/ /g, "-").slice(0, -3).trim();
+  const posts = keys.map((key, index) => {
+    const slug = key.split('/')[1].replace(/ /g, '-').slice(0, -3).trim()
 
-      const parsed = matter(values[index].default);
+    const parsed = matter(values[index].default)
 
-      return {
-        ...parsed.data,
-        slug,
-      };
+    return {
+      ...parsed.data,
+      slug
+    }
+  }).sort(function (a, b) {
+    return a.date - b.date
+  }).reverse()
+
+  const embeds = await Promise.all(posts.map((post) => {
+    return extract(post.video_url).then((obj) => {
+      return Object.assign(obj, { title: post.title, slug: post.slug })
     })
-    .sort(function (a, b) {
-      return a.date - b.date;
-    })
-    .reverse();
-
-  const embeds = await Promise.all(
-    posts.map((post) => {
-      return extract(post.video_url).then((obj) => {
-        return Object.assign(obj, { title: post.title, slug: post.slug });
-      });
-    })
-  );
+  }))
 
   return {
     props: {
-      embeds,
-    },
-  };
+      embeds
+    }
+  }
 }
 
-export default function BlogPage({ embeds }) {
+export default function BlogPage ({ embeds }) {
   return (
     <>
       <Head>
@@ -60,35 +62,30 @@ export default function BlogPage({ embeds }) {
           <Hero>
             <Container text>
               <h1>The Federated Videos</h1>
-              <h2>Check out videos about module federation</h2>
+              <h2>
+                Check out videos about module federation
+              </h2>
             </Container>
           </Hero>
         )}
       >
-        <Segment style={{ padding: "8em 0em" }} vertical>
+        <Segment style={{ padding: '8em 0em' }} vertical>
           <Container text>
             {embeds.map((embed, i) => {
               return (
                 <React.Fragment key={embed.thumbnail_url}>
-                  {i > 0 && <Divider style={{ margin: "3em 0em" }} />}
+                  {i > 0 && <Divider style={{ margin: '3em 0em' }} />}
 
-                  <Header
-                    as="h3"
-                    className={videoTitle}
-                    style={{ fontSize: "2em" }}
-                  >
+                  <Header as='h3' className={videoTitle} style={{ fontSize: '2em' }}>
                     <Link href={`/videos/${embed.slug}`}>{embed.title}</Link>
                   </Header>
-                  <div
-                    className={videoWrapper}
-                    dangerouslySetInnerHTML={{ __html: embed.html }}
-                  />
+                  <div className={videoWrapper} dangerouslySetInnerHTML={{ __html: embed.html }} />
                 </React.Fragment>
-              );
+              )
             })}
           </Container>
         </Segment>
       </AppShell>
     </>
-  );
+  )
 }
