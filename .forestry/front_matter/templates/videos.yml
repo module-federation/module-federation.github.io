@@ -27,5 +27,6 @@ pages:
 - videos/module-federation-shared-app-shell-state-routing-and-components.md
 - videos/single-spa-federated-modules-wow.md
 - videos/stitching-two-basic-apps-together.md
+- videos/storybook-webpack-federation-plugin-walkthrough.md
 - videos/using-module-federation-with-webpack-4.md
 - videos/webpack-5-module-federation-a-look-at-the-source-code-and-how-it-works.md
