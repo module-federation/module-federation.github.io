@@ -39,4 +39,5 @@ fields:
   description: URL to Medium Article
 pages:
 - posts/introducing-the-noservice-architecture.md
+- posts/the-microfrontend-revolution-module-federation-in-webpack-5.md
 - posts/webpack-5-federation-a-game-changer-in-javascript-architecture.md
