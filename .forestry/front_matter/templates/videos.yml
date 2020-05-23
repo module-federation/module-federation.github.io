@@ -20,6 +20,7 @@ fields:
     required: true
   default: now
 pages:
+- videos/angularair-micro-front-end-revolution-with-module-federation-and-angular-with-manfred-steyer.md
 - videos/introducing-federated-modules-in-webpack-5.md
 - videos/module-federation-decentralized-route-federation.md
 - videos/module-federation-interview-with-zack-jackson.md
