@@ -38,6 +38,7 @@ fields:
   label: Medium Link
   description: URL to Medium Article
 pages:
+- posts/federated-design-systems-with-storybook.md
 - posts/introducing-the-noservice-architecture.md
 - posts/the-microfrontend-revolution-module-federation-in-webpack-5.md
 - posts/webpack-5-federation-a-game-changer-in-javascript-architecture.md
