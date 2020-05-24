@@ -64,7 +64,7 @@ export default function BlogPage({posts}) {
         )}
       >
         <Segment style={{padding: "8em 0em"}} vertical>
-          <Container text className={container}>
+          <Container text>
             {posts.map((post, i) => {
               const handleClick = (e) => {
                 e.preventDefault();
