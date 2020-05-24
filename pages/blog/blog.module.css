@@ -1,0 +1,6 @@
+.container :global .embedly-card iframe {
+    pointer-events: none;
+}
+.container :global .embedly-card-hug {
+    max-width: 100%!important;
+}

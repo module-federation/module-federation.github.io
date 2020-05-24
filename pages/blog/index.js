@@ -13,7 +13,7 @@ import config from '../../data/config.json'
 import navItems from '../../nav-items'
 import AppShell from '../../components/app-shell'
 import Hero from '../../components/hero'
-
+import { container } from "./blog.module.css";
 export function getStaticProps() {
   const ctx = require.context('../../posts', true, /\.md$/)
   const keys = ctx.keys()
@@ -64,7 +64,7 @@ export default function BlogPage({posts}) {
         )}
       >
         <Segment style={{padding: "8em 0em"}} vertical>
-          <Container text>
+          <Container text className={container}>
             {posts.map((post, i) => {
               const handleClick = (e) => {
                 e.preventDefault();
