@@ -32,7 +32,6 @@ export function getStaticProps() {
     }
   })
 
-  console.log(posts)
 
   return {
     props: {posts}
@@ -77,12 +76,13 @@ export default function BlogPage({posts}) {
                   data-card-via={post.slug}
                   data-card-chrome={0}
                   className="embedly-card"
+                  key={post.slug}
                 >
                   Embedly
                 </a>
               ) : null;
               return (
-                <div>
+                <div key={post.slug}>
                   {i > 0 && <Divider style={{margin: "3em 0em"}}/>}
 
                   <Header
@@ -106,7 +106,7 @@ export default function BlogPage({posts}) {
                   <Button
                     as="a"
                     size="large"
-                    href={post.medium_link ? `/blog/${post.slug}` : post.medium_link
+                    href={post.medium_link ? post.medium_link : `/blog/${post.slug}`
                     }
                     className="no-print"
                   >
