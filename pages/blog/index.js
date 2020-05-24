@@ -14,7 +14,7 @@ import navItems from '../../nav-items'
 import AppShell from '../../components/app-shell'
 import Hero from '../../components/hero'
 
-export function getStaticProps () {
+export function getStaticProps() {
   const ctx = require.context('../../posts', true, /\.md$/)
   const keys = ctx.keys()
   const values = keys.map(ctx)
@@ -24,7 +24,7 @@ export function getStaticProps () {
 
     const parsed = matter(values[index].default)
 
-    const { date, ...rest } = parsed.data
+    const {date, ...rest} = parsed.data
     return {
       ...rest,
       slug,
@@ -35,11 +35,11 @@ export function getStaticProps () {
   console.log(posts)
 
   return {
-    props: { posts }
+    props: {posts}
   }
 }
 
-export default function BlogPage ({ posts }) {
+export default function BlogPage({posts}) {
   return (
     <>
       <Head>
@@ -63,7 +63,7 @@ export default function BlogPage ({ posts }) {
           </Hero>
         )}
       >
-        <Segment style={{ padding: "8em 0em" }} vertical>
+        <Segment style={{padding: "8em 0em"}} vertical>
           <Container text className={container}>
             {posts.map((post, i) => {
               const handleClick = (e) => {
@@ -106,7 +106,7 @@ export default function BlogPage ({ posts }) {
                     }
                   }}
                 >
-                  {i > 0 && <Divider style={{ margin: "3em 0em" }} />}
+                  {i > 0 && <Divider style={{margin: "3em 0em"}}/>}
 
                   <Header
                     as="h3"
@@ -117,17 +117,20 @@ export default function BlogPage ({ posts }) {
                   >
                     {post.title}
                   </Header>
-                  <p onClick={embeddedArticle ? handleClick : () => {}}>
+                  <p onClick={embeddedArticle ? handleClick : () => {
+                  }}>
                     {embeddedArticle ? (
                       <>{embeddedArticle}</>
                     ) : (
                       post.secondary_title
                     )}
                   </p>
+
                   <Button
                     as="a"
                     size="large"
-                    href={post.medium_link}
+                    href={post.medium_link ? `/blog/${post.slug}` : post.medium_link
+                    }
                     className="no-print"
                   >
                     Read Post
