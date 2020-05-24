@@ -82,30 +82,7 @@ export default function BlogPage({posts}) {
                 </a>
               ) : null;
               return (
-                <InView
-                  as="div"
-                  key={post.slug}
-                  triggerOnce={true}
-                  rootMargin="200px"
-                  onChange={(inView, entry) => {
-                    if (inView) {
-                      if (post.medium_link) {
-                        preloadResource(
-                          `${post.medium_link}`,
-                          "prefetch",
-                          "document"
-                        );
-                        preloadResource(`${post.medium_link}`, "prerender");
-                      }
-                      preloadResource(
-                        `/blog/${post.slug}`,
-                        "prefetch",
-                        "document"
-                      );
-                      preloadResource(`/blog/${post.slug}`, "prerender");
-                    }
-                  }}
-                >
+                <div>
                   {i > 0 && <Divider style={{margin: "3em 0em"}}/>}
 
                   <Header
@@ -135,7 +112,7 @@ export default function BlogPage({posts}) {
                   >
                     Read Post
                   </Button>
-                </InView>
+                </div>
               );
             })}
           </Container>
