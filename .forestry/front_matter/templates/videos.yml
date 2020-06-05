@@ -21,6 +21,7 @@ fields:
   default: now
 pages:
 - videos/advanced-shared-api-module-federation-for-power-users.md
+- videos/an-introduction-to-module-federation.md
 - videos/angularair-micro-front-end-revolution-with-module-federation-and-angular-with-manfred-steyer.md
 - videos/introducing-federated-modules-in-webpack-5.md
 - videos/micro.sphere.it-1-webpack-5-module-federation-by-zack-jackson-discussion-panel.md
