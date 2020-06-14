@@ -70,7 +70,7 @@ export default function HomePage () {
                 href='https://indepth.dev/webpack-5-module-federation-a-game-changer-in-javascript-architecture/'
                 className='no-print'
               >
-                Lean More
+                Learn More
               </Button>
             </Grid.Column>
           </Grid.Row>
