@@ -40,5 +40,6 @@ fields:
 pages:
 - posts/federated-design-systems-with-storybook.md
 - posts/introducing-the-noservice-architecture.md
+- posts/module-federation-in-rollup.js.md
 - posts/the-microfrontend-revolution-module-federation-in-webpack-5.md
 - posts/webpack-5-federation-a-game-changer-in-javascript-architecture.md
