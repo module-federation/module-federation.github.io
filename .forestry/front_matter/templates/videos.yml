@@ -20,6 +20,7 @@ fields:
     required: true
   default: now
 pages:
+- videos/a-b-tests-in-module-federation-jack-herrington.md
 - videos/advanced-shared-api-module-federation-for-power-users.md
 - videos/an-introduction-to-module-federation.md
 - videos/angularair-micro-front-end-revolution-with-module-federation-and-angular-with-manfred-steyer.md
