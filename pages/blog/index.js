@@ -13,13 +13,14 @@ import config from '../../data/config.json'
 import navItems from '../../nav-items'
 import AppShell from '../../components/app-shell'
 import Hero from '../../components/hero'
-import { container } from "./blog.module.css";
+import {container} from "./blog.module.css";
+
 export function getStaticProps() {
   const ctx = require.context('../../posts', true, /\.md$/)
   const keys = ctx.keys()
   const values = keys.map(ctx)
 
-  const posts = keys.map((key, index) => {
+  let posts = keys.map((key, index) => {
     const slug = key.split('/')[1].replace(/ /g, '-').slice(0, -3).trim()
 
     const parsed = matter(values[index].default)
@@ -28,10 +29,15 @@ export function getStaticProps() {
     return {
       ...rest,
       slug,
-      date: date.toISOString().substring(0, 10)
+      date: date.toISOString().substring(0, 10),
+      rawDate: date.toISOString()
     }
   })
 
+  try {
+   posts = posts.sort((a, b) => new Date(b.rawDate).getTime() - new Date(a.rawDate).getTime())
+
+  } catch (e) {}
 
   return {
     props: {posts}
