@@ -30,7 +30,7 @@ function MyApp ({ Component, pageProps }) {
       <Head>
         <title>{config.title}</title>
         <script src='https://www.googletagmanager.com/gtag/js?id=UA-120967034-1' />
-
+        <link rel="prerender" href="/blog"/>
         <meta name='description' content={config.description} />
         <script dangerouslySetInnerHTML={{ __html: tracking }} />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
