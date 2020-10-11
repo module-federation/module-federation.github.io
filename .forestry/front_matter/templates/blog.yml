@@ -42,6 +42,7 @@ pages:
 - posts/introducing-the-noservice-architecture.md
 - posts/micro-fe-architecture-webpack-5-module-federation-and-custom-startup-code.md
 - posts/module-federation-in-rollup.js.md
+- posts/module-federation-o-futuro-do-microfrontend.md
 - posts/module-federation.advanced-api-in-webpack-5.0.0-beta.17.md
 - posts/module-federation.advanced-api-part-1.md
 - posts/revolutionizing-micro-frontends-with-webpack-5-module-federation-and-bit-1.md
