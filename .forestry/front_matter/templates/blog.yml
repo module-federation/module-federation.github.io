@@ -50,3 +50,4 @@ pages:
 - posts/using-webpack-module-federation-to-create-an-app-shell.md
 - posts/web-apps-micro-frontend-framework-with-support-of-module-federation.md
 - posts/webpack-5-federation-a-game-changer-in-javascript-architecture.md
+- posts/webpack-5-module-federation-stitching-two-simple-bundles-together.md
