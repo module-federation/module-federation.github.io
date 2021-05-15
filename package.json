@@ -14,7 +14,7 @@
     "forestry-preview": "next -p 8080 -H 0.0.0.0"
   },
   "dependencies": {
-    "buffer": "^5.5.0",
+    "buffer": "5.7.1",
     "gray-matter": "^4.0.2",
     "marksy": "^8.0.0",
     "next": "^9.3.3",
