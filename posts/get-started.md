@@ -224,7 +224,7 @@ From the root of the application, you should now be able to access your two SPAs
 
 # Start Federating
 
-Now that we have two independnt SPAs running, let's go ahead and make each of the SPAs a Fedeated Container as well as Consumer. We accomplish this by utilizing the new `ModuleFederationPlugin` that is part of the Webpack 5 Core.
+Now that we have two independnt SPAs running, let's go ahead and make each of the SPAs a Federated Container as well as Consumer. We accomplish this by utilizing the new `ModuleFederationPlugin` that is part of the Webpack 5 Core.
 
 We'll start by adding the `ModuleFederationPlugin` to `Application A`, this will look like:
 
