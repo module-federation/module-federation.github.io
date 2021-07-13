@@ -10,6 +10,6 @@ contact:
   twitter_url: ''
   github_handle: ''
   github_url: ''
-repository_url: ''
+repository_url: https://www.ebey.me/blog/webpack-federation-ssr
 
 ---
