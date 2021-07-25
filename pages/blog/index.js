@@ -48,7 +48,7 @@ export default function BlogPage({posts}) {
   return (
     <>
       <Head>
-        <title>The Federated Blog | {config.title}</title>
+        <title>Module Federation Group Blog | {config.title}</title>
         <script
           async
           src="//cdn.embedly.com/widgets/platform.js"

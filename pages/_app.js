@@ -23,6 +23,7 @@ function getUrlParams(search) {
   gtag('config', 'UA-120967034-1');
   var redirect = getUrlParams(window.location.href).utm_medium
   if(redirect) window.location.replace(redirect)
+  window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/scripted-alchemy/30-meeting-1-1', text: 'Schedule time with us', color: '#006bff', textColor: '#ffffff', branding: true }); }
 `
 function MyApp ({ Component, pageProps }) {
   return (
@@ -33,6 +34,8 @@ function MyApp ({ Component, pageProps }) {
         <link rel="prerender" href="/blog"/>
         <meta name='description' content={config.description} />
         <script dangerouslySetInnerHTML={{ __html: tracking }} />
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async/>
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </Head>
 

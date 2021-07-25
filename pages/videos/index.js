@@ -52,7 +52,7 @@ export default function BlogPage ({ embeds }) {
   return (
     <>
       <Head>
-        <title>The Federated Blog | {config.title}</title>
+        <title>Module Federation Group Blog | {config.title}</title>
       </Head>
 
       <AppShell
