@@ -28,6 +28,10 @@ const menuItems = {
     {
       href: '/videos',
       children: 'Videos'
+    },
+    {
+      href: '/contact',
+      children: "Contact Us"
     }
   ],
   secondaryMenuItems: [
