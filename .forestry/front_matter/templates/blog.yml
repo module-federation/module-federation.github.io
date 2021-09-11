@@ -38,6 +38,7 @@ fields:
   label: Medium Link
   description: URL to Medium Article
 pages:
+- posts/distributed-logging-in-federated-applications-with-sentry.md
 - posts/federated-design-systems-with-storybook.md
 - posts/introducing-the-noservice-architecture.md
 - posts/micro-fe-architecture-webpack-5-module-federation-and-custom-startup-code.md
