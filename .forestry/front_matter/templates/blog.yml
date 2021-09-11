@@ -38,6 +38,7 @@ fields:
   label: Medium Link
   description: URL to Medium Article
 pages:
+- posts/building-micro-frontends-with-webpack-s-module-federation.md
 - posts/distributed-logging-in-federated-applications-with-sentry.md
 - posts/federated-design-systems-with-storybook.md
 - posts/introducing-the-noservice-architecture.md
