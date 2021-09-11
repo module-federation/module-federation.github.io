@@ -42,6 +42,7 @@ pages:
 - posts/federated-design-systems-with-storybook.md
 - posts/introducing-the-noservice-architecture.md
 - posts/micro-fe-architecture-webpack-5-module-federation-and-custom-startup-code.md
+- posts/micro-frontends-using-module-federation-presets-for-react-and-storybook-typescript-compiler-plugins-and-more-in-nx-12.8.md
 - posts/microfrontend-from-tradition-to-module-federation.md
 - posts/migrating-module-federation-from-webpack-5.0.0-beta.16-to-webpack-5.0.0-beta.21.md
 - posts/module-federation-in-rollup.js.md
