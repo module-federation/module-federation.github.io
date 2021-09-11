@@ -52,6 +52,7 @@ pages:
 - posts/module-federation.advanced-api-part-1.md
 - posts/next.js-11-module-federation-and-ssr-a-brave-new-world.md
 - posts/revolutionizing-micro-frontends-with-webpack-5-module-federation-and-bit.md
+- posts/single-spa-with-module-federation-in-systemjs.md
 - posts/stop-paying-the-microservice-premium.md
 - posts/the-history-of-microfrontends.md
 - posts/the-microfrontend-revolution-module-federation-in-webpack-5.md
