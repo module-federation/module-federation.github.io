@@ -282,9 +282,9 @@ module.exports = {
 };
 ```
 
-This specifies that `Application A` exposese it's App component to the world as a Federated Module called `SayHelloFromA`, while whenever you import from `application_b`, those modules should come from `Application B` at runtime.
+This specifies that `Application A` exposes it's App component to the world as a Federated Module called `SayHelloFromA`, while whenever you import from `application_b`, those modules should come from `Application B` at runtime.
 
-We will do the same thing fro `Applicaiton B`, specifying that it exposes it's App component as `SayHelloFromB` and whenever we import from `application_a`, those modules should come from `Application A` at runtime:
+Similarly, in `Applicaiton B`, we specify that it exposes it's App component as `SayHelloFromB` and whenever we import from `application_a`, those modules should come from `Application A` at runtime:
 
 **packages/application-b/webpack.config.js**
 
