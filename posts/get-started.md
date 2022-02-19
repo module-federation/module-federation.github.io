@@ -360,7 +360,7 @@ The last step before we can start to utilize the exposed components is to specif
 </head>
 ```
 
-The remote entry files are tiny mappings for webpack to resolve the individually imported modules without trasfering unnessesary info. They are also responsible for enabling the sharing of libraries that the packages use, in this case, when `Application A` requests `Application B`'s SayHelloFromB component, we do not send the React or ReactDOM over the wire as `Application A` already has a copy of it.
+The remote entry files are tiny mappings for webpack to resolve the individually imported modules without transferring unnessesary info. They are also responsible for enabling the sharing of libraries that the packages use, in this case, when `Application A` requests `Application B`'s SayHelloFromB component, we do not send the React or ReactDOM over the wire as `Application A` already has a copy of it.
 
 ## Consuming Federated Components
 
