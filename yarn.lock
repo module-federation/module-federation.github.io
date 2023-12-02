@@ -3923,10 +3923,10 @@ prepend-http@^1.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
 
-prism-themes@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/prism-themes/-/prism-themes-1.4.0.tgz#2f93a33450532577c7962928655d7b4305fa843d"
-  integrity sha512-VTy6t69sS1FavspBsodoF/x/eduPydUXyZH+++Jkun0VQ4X7lCZVvsfGsYKzkUan2PJNcV2mA4lAFcr7KKXD1g==
+prism-themes@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/prism-themes/-/prism-themes-1.9.0.tgz#19c034f3205f1e28d75d89728e54ccd745f7e3dd"
+  integrity sha512-tX2AYsehKDw1EORwBps+WhBFKc2kxfoFpQAjxBndbZKr4fRmMkv47XN0BghC/K1qwodB1otbe4oF23vUTFDokw==
 
 prismjs@1.24.1:
   version "1.24.1"
